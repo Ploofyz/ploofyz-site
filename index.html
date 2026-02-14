@@ -48,6 +48,7 @@ padding:160px 20px 120px;
 font-size:64px;
 line-height:1.1;
 background:linear-gradient(90deg,#fff,#9ea8ff);
+background-clip:text;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
@@ -91,6 +92,26 @@ padding:40px;
 border-radius:20px;
 width:280px;
 border:1px solid rgba(255,255,255,0.05);
+opacity:0;
+transform:translateY(30px);
+animation:fadeInUp 0.8s ease forwards;
+transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:nth-child(1){animation-delay:0.1s;}
+.card:nth-child(2){animation-delay:0.2s;}
+.card:nth-child(3){animation-delay:0.3s;}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 20px 40px rgba(100,100,255,0.2);
+}
+
+@keyframes fadeInUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 /* PRICING */
@@ -114,6 +135,37 @@ padding:45px 40px;
 border-radius:20px;
 width:260px;
 border:1px solid rgba(255,255,255,0.05);
+opacity:0;
+transform:translateY(30px) scale(0.95);
+animation:fadeInScale 0.8s ease forwards;
+transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.price-card:nth-child(1){animation-delay:0.1s;}
+.price-card:nth-child(2){animation-delay:0.2s;}
+.price-card:nth-child(3){animation-delay:0.3s;}
+
+.price-card:hover{
+transform:translateY(-12px) scale(1.05);
+box-shadow:0 30px 60px rgba(100,100,255,0.3);
+background:rgba(255,255,255,0.06);
+border-color:rgba(130,130,255,0.4);
+}
+
+.price-card:hover h3{
+color:#a8b0ff;
+}
+
+.price-card:hover .cta{
+transform:scale(1.05);
+box-shadow:0 8px 25px rgba(120,120,255,.5);
+}
+
+@keyframes fadeInScale{
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
 }
 
 .price-card h1{
