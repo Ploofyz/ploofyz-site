@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ploofyz Minecraft Hosting</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif;
+color:white;
+background:
+radial-gradient(circle at 20% 20%, #1b213d, transparent 40%),
+radial-gradient(circle at 80% 30%, #2a1c44, transparent 40%),
+#0a0b12;
+}
+
+/* NAVBAR */
+
+.nav{
+display:flex;
+justify-content:space-between;
+padding:22px 60px;
+position:sticky;
+top:0;
+background:rgba(10,11,18,0.65);
+backdrop-filter:blur(14px);
+}
+
+.logo{font-weight:600;font-size:20px;letter-spacing:1px;}
+
+.nav a{
+margin-left:28px;
+text-decoration:none;
+color:#bfc6ff;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:160px 20px 120px;
+}
+
+.hero h1{
+font-size:64px;
+line-height:1.1;
+background:linear-gradient(90deg,#fff,#9ea8ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+margin-top:20px;
+font-size:22px;
+color:#aeb3d6;
+}
+
+.cta{
+margin-top:40px;
+padding:16px 40px;
+border-radius:999px;
+border:none;
+background:linear-gradient(90deg,#5c6cff,#8f6bff);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+}
+
+.cta:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 35px rgba(120,120,255,.35);
+}
+
+/* FEATURES */
+
+.features{
+display:flex;
+justify-content:center;
+gap:30px;
+padding:100px 60px;
+flex-wrap:wrap;
+}
+
+.card{
+background:rgba(255,255,255,0.03);
+padding:40px;
+border-radius:20px;
+width:280px;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+/* PRICING */
+
+.pricing{
+text-align:center;
+padding:90px 20px;
+}
+
+.price-grid{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:50px;
+flex-wrap:wrap;
+}
+
+.price-card{
+background:rgba(255,255,255,0.03);
+padding:45px 40px;
+border-radius:20px;
+width:260px;
+border:1px solid rgba(255,255,255,0.05);
+}
+
+.price-card h1{
+font-size:46px;
+margin:10px 0;
+}
+
+.price-card ul{
+list-style:none;
+margin:20px 0;
+line-height:1.8;
+color:#b9bff2;
+}
+
+.popular{
+border:1px solid rgba(130,130,255,.7);
+box-shadow:0 0 40px rgba(100,100,255,.15);
+}
+
+/* CTA */
+
+.bigcta{
+text-align:center;
+padding:140px 20px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#777ba5;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+.hero h1{font-size:44px;}
+.nav{padding:20px;}
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+<div class="logo">PLOOFYZ</div>
+<nav>
+<a href="#">Home</a>
+<a href="#">Plans</a>
+<a href="#">Join</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Minecraft Hosting.<br>Fast. Stable. Powerful.</h1>
+<p>Built for survival worlds, modpacks, and growing communities.</p>
+<button class="cta">Start Server</button>
+</section>
+
+<section class="features">
+
+<div class="card">
+<h3>⚡ Ryzen Performance</h3>
+<p>High clock speeds for smooth TPS and heavy modpacks.</p>
+</div>
+
+<div class="card">
+<h3>🛡️ DDoS Protection</h3>
+<p>Enterprise protection keeps your world online 24/7.</p>
+</div>
+
+<div class="card">
+<h3>🌏 Malaysia Optimized</h3>
+<p>Low ping routing for MY, SG, and SEA players.</p>
+</div>
+
+</section>
+
+<section class="pricing">
+
+<h2>Choose Your Plan</h2>
+
+<div class="price-grid">
+
+<div class="price-card">
+<h3>Starter</h3>
+<h1>RM10</h1>
+<p>/month</p>
+<ul>
+<li>2GB RAM</li>
+<li>Plugin Ready</li>
+<li>Email Support</li>
+</ul>
+<a href="#"><button class="cta">Buy</button></a>
+</div>
+
+<div class="price-card popular">
+<h3>Pro</h3>
+<h1>RM25</h1>
+<p>/month</p>
+<ul>
+<li>6GB RAM</li>
+<li>Modpack Ready</li>
+<li>Priority Support</li>
+</ul>
+<a href="#"><button class="cta">Buy</button></a>
+</div>
+
+<div class="price-card">
+<h3>Ultimate</h3>
+<h1>RM50</h1>
+<p>/month</p>
+<ul>
+<li>12GB RAM</li>
+<li>Dedicated Resources</li>
+<li>Instant Setup</li>
+</ul>
+<a href="#"><button class="cta">Buy</button></a>
+</div>
+
+</div>
+</section>
+
+<section class="bigcta">
+<h2>Launch your Minecraft world today.</h2>
+<button class="cta">Join Discord</button>
+</section>
+
+<footer>
+<p>© 2026 Ploofyz Hosting</p>
+</footer>
+
+</body>
+</html>
