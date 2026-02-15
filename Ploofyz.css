@@ -233,36 +233,56 @@ body{
   border:1px solid rgba(29,176,225,0.4);
 }
 
+.rank-card.vip{
+  border-top:4px solid #8FBACC;
+}
+
 .rank-card.vip h3{
-  background:linear-gradient(90deg,#4ade80,#22c55e);
+  background:linear-gradient(90deg,#8FBACC,#6a9fb5);
   background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+
+.rank-card.elite{
+  border-top:4px solid #628C54;
 }
 
 .rank-card.elite h3{
-  background:linear-gradient(90deg,#60a5fa,#3b82f6);
+  background:linear-gradient(90deg,#628C54,#4a6b3f);
   background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+
+.rank-card.hero{
+  border-top:4px solid #DFAC2A;
 }
 
 .rank-card.hero h3{
-  background:linear-gradient(90deg,#a78bfa,#8b5cf6);
+  background:linear-gradient(90deg,#DFAC2A,#b88d1f);
   background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
+}
+
+.rank-card.nexus{
+  border-top:4px solid #E57010;
 }
 
 .rank-card.nexus h3{
-  background:linear-gradient(90deg,#f59e0b,#d97706);
+  background:linear-gradient(90deg,#E57010,#b8590d);
   background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
+.rank-card.phantom{
+  border-top:4px solid #902C14;
+}
+
 .rank-card.phantom h3{
-  background:linear-gradient(90deg,#ef4444,#dc2626);
+  background:linear-gradient(90deg,#902C14,#6e220f);
   background-clip:text;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
