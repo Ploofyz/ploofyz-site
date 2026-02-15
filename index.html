@@ -28,32 +28,41 @@
 <button class="cta">Start Server</button>
 </section>
 
-<section class="features">
+<section class="ranks">
+  <h2>🌟 Server Ranks </h2>
+  <p>Upgrade your experience with premium ranks that unlock commands, utilities, and exclusive perks.</p>
 
-<div class="card">
-<h3>⚡ Ryzen Performance</h3>
-<p>High clock speeds for smooth TPS and heavy modpacks.</p>
-</div>
+ <div class="rank-grid">
 
-<div class="card">
-<h3>🛡️ DDoS Protection</h3>
-<p>Enterprise protection keeps your world online 24/7.</p>
-</div>
+    <div class="rank-card vip">
+      <h3>VIP</h3>
+      <p>Starter premium rank with useful commands and chat perks.</p>
+      <span class="duration">14 Days</span>
+    </div>
 
-<div class="card">
-<h3>🌏 Malaysia Optimized</h3>
-<p>Low ping routing for MY, SG, and SEA players.</p>
-</div>
+    <div class="rank-card elite">
+      <h3>Elite</h3>
+      <p>More utilities, crafting access, and gameplay conveniences.</p>
+      <span class="duration">14 Days</span>
+    </div>
 
-<div class="card">
-<h3>🚀 Instant Setup</h3>
-<p>Get your server running in minutes with one-click installation.</p>
-</div>
+    <div class="rank-card hero">
+      <h3>Hero</h3>
+      <p>Advanced tools, repair features, and environment controls.</p>
+      <span class="duration">14 Days</span>
+    </div>
 
-<div class="card">
-<h3>💾 Auto Backups</h3>
-<p>Daily automated backups keep your world safe and secure.</p>
-</div>
+    <div class="rank-card nexus">
+      <h3>Nexus</h3>
+      <p>Permanent rank with powerful utilities and reduced costs.</p>
+      <span class="duration">Permanent</span>
+    </div>
+
+    <div class="rank-card phantom">
+      <h3>Phantom</h3>
+      <p>Top-tier rank with maximum perks and full command access.</p>
+      <span class="duration">Permanent</span>
+    </div>
 
 </section>
 
@@ -130,7 +139,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-document.querySelectorAll('.card, .price-card').forEach(card => {
+document.querySelectorAll('.card, .price-card, .rank-card').forEach(card => {
   card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
   observer.observe(card);
 });
