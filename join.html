@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us - Ploofyz Minecraft Hosting</title>
+<title>Join Us - Ploofyz Minecraft Hosting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Fredoka:wght@700&display=swap" rel="stylesheet">
@@ -49,60 +49,61 @@ transition:color 0.3s;
 color:#1db0e1;
 }
 
-.about-section{
-max-width:900px;
+.join-section{
+max-width:700px;
 margin:80px auto;
-padding:40px 20px;
+padding:60px 40px;
+text-align:center;
+background:rgba(40,40,70,0.7);
+border-radius:30px;
+border:1px solid rgba(29,176,225,0.3);
+animation:scaleIn 0.8s ease;
 }
 
-.about-section h1{
+.join-section h1{
 font-family:'Fredoka',sans-serif;
 background:linear-gradient(90deg,#5fc4e1,#1db0e1,#4e2b95);
 background-clip:text;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 font-size:48px;
-margin-bottom:40px;
-text-align:center;
-animation:bounceIn 1s ease;
+margin-bottom:30px;
 }
 
-.about-section p{
+.join-section p{
 font-size:14px;
 line-height:2;
-margin-bottom:30px;
+margin-bottom:40px;
 color:#b8c0e8;
-opacity:0;
-animation:fadeInUp 0.8s ease forwards;
 }
 
-.about-section p:nth-child(2){animation-delay:0.2s;}
-.about-section p:nth-child(3){animation-delay:0.4s;}
-.about-section p:nth-child(4){animation-delay:0.6s;}
-.about-section p:nth-child(5){animation-delay:0.8s;}
+.discord-btn{
+padding:20px 50px;
+border-radius:999px;
+border:none;
+background:linear-gradient(135deg,#5865F2,#7289DA);
+color:white;
+font-size:18px;
+font-family:'Fredoka',sans-serif;
+cursor:pointer;
+transition:all 0.3s;
+text-decoration:none;
+display:inline-block;
+}
 
-@keyframes bounceIn{
+.discord-btn:hover{
+transform:translateY(-4px) scale(1.05);
+box-shadow:0 15px 40px rgba(88,101,242,.5);
+}
+
+@keyframes scaleIn{
 0%{
 opacity:0;
-transform:scale(0.3) translateY(-50px);
-}
-50%{
-opacity:1;
-transform:scale(1.05);
-}
-70%{
-transform:scale(0.9);
+transform:scale(0.8);
 }
 100%{
 opacity:1;
 transform:scale(1);
-}
-}
-
-@keyframes fadeInUp{
-to{
-opacity:1;
-transform:translateY(0);
 }
 }
 
@@ -127,12 +128,10 @@ margin-top:100px;
 </nav>
 </header>
 
-<section class="about-section">
-<h1>About Ploofyz</h1>
-<p>Welcome to Ploofyz, your trusted partner for high-performance Minecraft server hosting in Southeast Asia.</p>
-<p>We started with a simple mission: to provide fast, stable, and powerful Minecraft hosting that's optimized for Malaysian, Singaporean, and SEA players.</p>
-<p>Our servers are powered by high-performance Ryzen processors, ensuring smooth gameplay even with heavy modpacks. With enterprise-grade DDoS protection, your world stays online 24/7.</p>
-<p>Whether you're running a small survival server with friends or managing a large community, we have the perfect plan for you.</p>
+<section class="join-section">
+<h1>Join Our Community!</h1>
+<p>Connect with other players, get support, and stay updated with the latest news on our Discord server.</p>
+<a href="https://discord.gg/your-invite-link" class="discord-btn">Join Discord Server</a>
 </section>
 
 <footer>
