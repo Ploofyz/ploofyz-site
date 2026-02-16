@@ -52,6 +52,11 @@ body{
   display:block;
 }
 
+.logo a{
+  display:block;
+  line-height:0;
+}
+
 .nav a{
   margin-left:28px;
   text-decoration:none;
