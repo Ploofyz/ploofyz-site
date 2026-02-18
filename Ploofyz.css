@@ -501,14 +501,42 @@ footer{
   transition:all 0.3s;
   text-decoration:none;
   display:inline-block;
+  position:relative;
+  overflow:hidden;
   box-shadow:0 8px 20px rgba(88,101,242,.3);
   animation:pulse 2s infinite;
+}
+
+.discord-btn::before{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(
+    45deg,
+    transparent,
+    transparent 40%,
+    rgba(255,255,255,0.6) 50%,
+    transparent 60%,
+    transparent
+  );
+  animation:movingLight 3s linear infinite;
 }
 
 .discord-btn:hover{
   transform:translateY(-3px) scale(1.05);
   box-shadow:0 15px 40px rgba(88,101,242,.5);
-  animation:none;
+}
+
+@keyframes movingLight{
+  0%{
+    transform:translate(-100%, -100%) rotate(45deg);
+  }
+  100%{
+    transform:translate(100%, 100%) rotate(45deg);
+  }
 }
 
 /* ABOUT PAGE */
