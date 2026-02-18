@@ -22,9 +22,9 @@ body{
   padding:22px 60px;
   position:sticky;
   top:0;
-  background:rgba(10,10,26,0.9);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid rgba(29,176,225,0.3);
+  background:transparent;
+  backdrop-filter:none;
+  border-bottom:none;
   z-index:1000;
 }
 
