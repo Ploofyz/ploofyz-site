@@ -21,21 +21,28 @@ body{
   justify-content:space-between;
   align-items:center;
   padding:22px 60px;
-  position:sticky;
+  position:fixed;
   top:0;
-  background:rgba(10,10,26,0.7);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(29,176,225,0.2);
+  left:0;
+  right:0;
+  background:transparent;
+  backdrop-filter:none;
+  border-bottom:none;
   z-index:1000;
   transition:all 0.3s ease;
 }
 
 .nav.scrolled{
-  padding:15px 60px;
+  transform:translateY(-100%);
+}
+
+.nav.scrolled-up{
+  transform:translateY(0);
   background:rgba(10,10,26,0.95);
   backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(29,176,225,0.4);
   box-shadow:0 4px 20px rgba(0,0,0,0.3);
+  padding:15px 60px;
 }
 
 .logo{
@@ -58,7 +65,7 @@ body{
     10px 10px 25px rgba(0,0,0,0.6);
 }
 
-.nav.scrolled .logo{
+.nav.scrolled-up .logo{
   font-size:20px;
 }
 
@@ -68,7 +75,7 @@ body{
   transition:all 0.3s ease;
 }
 
-.nav.scrolled .logo img{
+.nav.scrolled-up .logo img{
   height:35px;
 }
 

@@ -36,14 +36,28 @@
 </footer>
 
 <script>
-// Navbar scroll effect
+// Navbar scroll effect - hide on scroll down, show on scroll up
+let lastScrollTop = 0;
+const nav = document.querySelector('.nav');
+
 window.addEventListener('scroll', function() {
-  const nav = document.querySelector('.nav');
-  if (window.scrollY > 50) {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (scrollTop > lastScrollTop && scrollTop > 100) {
+    // Scrolling down
     nav.classList.add('scrolled');
-  } else {
+    nav.classList.remove('scrolled-up');
+  } else if (scrollTop < lastScrollTop) {
+    // Scrolling up
     nav.classList.remove('scrolled');
+    if (scrollTop > 50) {
+      nav.classList.add('scrolled-up');
+    } else {
+      nav.classList.remove('scrolled-up');
+    }
   }
+  
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 </script>
 
