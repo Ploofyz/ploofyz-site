@@ -39,6 +39,9 @@ body{
 .nav.scrolled-up{
   transform:translateY(0);
   padding:15px 60px;
+  background:rgba(10,10,26,0.85);
+  backdrop-filter:blur(15px);
+  box-shadow:0 2px 15px rgba(0,0,0,0.2);
 }
 
 .logo{
