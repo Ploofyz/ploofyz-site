@@ -582,7 +582,7 @@ footer{
     width:85%;
     max-width:400px;
     height:100vh;
-    background:rgba(20,20,40,0.98);
+    background:rgba(15,15,30,0.98);
     backdrop-filter:blur(30px);
     display:flex !important;
     flex-direction:column;
@@ -591,6 +591,7 @@ footer{
     transition:right 0.4s ease;
     z-index:2000;
     box-shadow:-5px 0 30px rgba(0,0,0,0.5);
+    border-left:1px solid rgba(95,196,225,0.2);
   }
   
   .nav-menu.active{
@@ -604,10 +605,12 @@ footer{
   
   .nav-menu a{
     padding:20px 0;
-    font-size:22px;
+    font-size:18px;
     color:#5fc4e1;
     border-bottom:1px solid rgba(29,176,225,0.15);
     transition:all 0.3s;
+    display:block;
+    text-decoration:none;
   }
   
   .nav-menu a:hover{
@@ -630,6 +633,7 @@ footer{
     width:45px;
     height:45px;
     transition:color 0.3s;
+    z-index:2001;
   }
   
   .close-btn:hover{
