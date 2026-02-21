@@ -548,6 +548,11 @@ footer{
   display:none;
 }
 
+/* Desktop - Hide menu backdrop */
+.menu-backdrop{
+  display:none !important;
+}
+
 /* MOBILE */
 
 @media(max-width:900px){
@@ -642,7 +647,7 @@ footer{
   
   /* Menu overlay backdrop */
   .menu-backdrop{
-    display:none;
+    display:none !important;
     position:fixed;
     top:0;
     left:0;
@@ -651,10 +656,12 @@ footer{
     background:rgba(0,0,0,0.7);
     z-index:1500;
     backdrop-filter:blur(5px);
+    pointer-events:none;
   }
   
   .menu-backdrop.active{
-    display:block;
+    display:block !important;
+    pointer-events:auto;
   }
   
   /* Search Modal */
