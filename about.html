@@ -88,19 +88,45 @@ menuBtn.addEventListener('click', () => {
   navMenu.classList.add('active');
   menuBackdrop.classList.add('active');
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('menu-open');
 });
 
 closeBtn.addEventListener('click', () => {
   navMenu.classList.remove('active');
   menuBackdrop.classList.remove('active');
   document.body.style.overflow = '';
+  document.body.classList.remove('menu-open');
 });
 
 menuBackdrop.addEventListener('click', () => {
   navMenu.classList.remove('active');
   menuBackdrop.classList.remove('active');
   document.body.style.overflow = '';
+  document.body.classList.remove('menu-open');
 });
+
+// Swipe gesture for mobile menu
+let touchStartX = 0;
+let touchEndX = 0;
+
+navMenu.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+navMenu.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  if (touchStartX - touchEndX > 60) {
+    // swipe left → close
+    navMenu.classList.remove('active');
+    menuBackdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    document.body.classList.remove('menu-open');
+  }
+}
 
 // Search functionality for both mobile and desktop
 const openSearch = () => {
