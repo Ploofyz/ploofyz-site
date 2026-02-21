@@ -44,6 +44,32 @@ body{
   box-shadow:0 2px 15px rgba(0,0,0,0.2);
 }
 
+.nav-icons{
+  display:none;
+}
+
+.search-btn, .menu-btn, .store-btn{
+  background:transparent;
+  border:none;
+  color:#5fc4e1;
+  cursor:pointer;
+  padding:8px;
+  transition:color 0.3s;
+}
+
+.search-btn:hover, .menu-btn:hover, .store-btn:hover{
+  color:#1db0e1;
+}
+
+.nav-menu{
+  display:flex;
+  gap:28px;
+}
+
+.close-btn{
+  display:none;
+}
+
 .logo{
   font-weight:900;
   font-size:24px;
@@ -84,7 +110,6 @@ body{
 }
 
 .nav a{
-  margin-left:28px;
   text-decoration:none;
   color:#5fc4e1;
   transition:color 0.3s;
@@ -435,44 +460,92 @@ footer{
 /* MOBILE */
 
 @media(max-width:900px){
-  /* Navbar Mobile */
+  /* Navbar Mobile - Apple Style */
   .nav{
-    padding:12px 15px;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
+    padding:12px 20px;
+    background:rgba(10,10,26,0.95);
+    backdrop-filter:blur(20px);
   }
   .nav.scrolled-up{
-    padding:10px 15px;
-  }
-  .logo{
-    text-align:left;
-    width:auto;
-    flex-shrink:0;
+    padding:12px 20px;
   }
   .logo img{
     height:28px;
   }
   .nav.scrolled-up .logo img{
-    height:24px;
+    height:28px;
   }
-  .nav nav{
+  
+  /* Show mobile icons */
+  .nav-icons{
     display:flex;
-    flex-wrap:wrap;
-    gap:5px;
-    justify-content:flex-end;
-    width:auto;
-    max-width:60%;
+    gap:15px;
+    align-items:center;
   }
-  .nav a{
-    margin-left:0;
-    font-size:9px;
-    padding:5px 8px;
-    white-space:nowrap;
+  
+  /* Hide desktop nav */
+  .nav nav{
+    display:none;
+  }
+  
+  /* Mobile menu overlay */
+  .nav-menu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:80%;
+    max-width:350px;
+    height:100vh;
+    background:rgba(10,10,26,0.98);
+    backdrop-filter:blur(30px);
+    display:flex;
+    flex-direction:column;
+    padding:60px 30px;
+    gap:0;
+    transition:right 0.3s ease;
+    z-index:2000;
+  }
+  
+  .nav-menu.active{
+    right:0;
+  }
+  
+  .nav-menu a{
+    padding:18px 0;
+    font-size:20px;
+    border-bottom:1px solid rgba(29,176,225,0.1);
+  }
+  
+  .close-btn{
+    display:block;
+    position:absolute;
+    top:15px;
+    right:20px;
     background:transparent;
     border:none;
-    border-radius:0;
+    color:#5fc4e1;
+    font-size:40px;
+    cursor:pointer;
+    line-height:1;
+    padding:0;
+    width:40px;
+    height:40px;
+  }
+  
+  /* Menu overlay backdrop */
+  .menu-backdrop{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background:rgba(0,0,0,0.5);
+    z-index:1500;
+  }
+  
+  .menu-backdrop.active{
+    display:block;
   }
   
   /* Hero Mobile */

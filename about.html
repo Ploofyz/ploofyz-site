@@ -14,7 +14,21 @@
 
 <header class="nav">
 <div class="logo"><a href="index.html"><img src="ploofyz-logo.png" alt="PLOOFYZ"></a></div>
-<nav>
+<div class="nav-icons">
+<button class="search-btn" aria-label="Search">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+<path d="M13 13L16.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+</button>
+<button class="menu-btn" aria-label="Menu">
+<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 1H20M0 7H20M0 13H20" stroke="currentColor" stroke-width="2"/>
+</svg>
+</button>
+</div>
+<nav class="nav-menu">
+<button class="close-btn" aria-label="Close">×</button>
 <a href="index.html">Home</a>
 <a href="about.html">About Us</a>
 <a href="index.html#pricing">Plans</a>
@@ -22,6 +36,7 @@
 <a href="join.html">Join</a>
 </nav>
 </header>
+<div class="menu-backdrop"></div>
 
 <section class="about-section">
 <h1>About Ploofyz</h1>
@@ -36,6 +51,30 @@
 </footer>
 
 <script>
+// Mobile menu toggle
+const menuBtn = document.querySelector('.menu-btn');
+const closeBtn = document.querySelector('.close-btn');
+const navMenu = document.querySelector('.nav-menu');
+const menuBackdrop = document.querySelector('.menu-backdrop');
+
+menuBtn.addEventListener('click', () => {
+  navMenu.classList.add('active');
+  menuBackdrop.classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+
+closeBtn.addEventListener('click', () => {
+  navMenu.classList.remove('active');
+  menuBackdrop.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+menuBackdrop.addEventListener('click', () => {
+  navMenu.classList.remove('active');
+  menuBackdrop.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
 // Navbar scroll effect - hide on scroll down, show on scroll up
 let lastScrollTop = 0;
 const nav = document.querySelector('.nav');
