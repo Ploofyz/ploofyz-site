@@ -38,6 +38,23 @@
 </header>
 <div class="menu-backdrop"></div>
 
+<div class="search-modal">
+<div class="search-header">
+<h2 style="color:#5fc4e1;font-size:24px;margin:0;">Search</h2>
+<button class="search-close" aria-label="Close">×</button>
+</div>
+<div class="search-input-wrapper">
+<input type="text" class="search-input" placeholder="Search for pages, features, or plans..." />
+<svg class="search-icon-input" width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+<path d="M13 13L16.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+</div>
+<div class="search-results">
+<p>Try searching for: Home, About, Plans, Store, Join</p>
+</div>
+</div>
+
 <section class="about-section">
 <h1>About Ploofyz</h1>
 <p>Welcome to Ploofyz, your trusted partner for high-performance Minecraft server hosting in Southeast Asia.</p>
@@ -56,6 +73,10 @@ const menuBtn = document.querySelector('.menu-btn');
 const closeBtn = document.querySelector('.close-btn');
 const navMenu = document.querySelector('.nav-menu');
 const menuBackdrop = document.querySelector('.menu-backdrop');
+const searchBtn = document.querySelector('.search-btn');
+const searchModal = document.querySelector('.search-modal');
+const searchClose = document.querySelector('.search-close');
+const searchInput = document.querySelector('.search-input');
 
 menuBtn.addEventListener('click', () => {
   navMenu.classList.add('active');
@@ -73,6 +94,42 @@ menuBackdrop.addEventListener('click', () => {
   navMenu.classList.remove('active');
   menuBackdrop.classList.remove('active');
   document.body.style.overflow = '';
+});
+
+searchBtn.addEventListener('click', () => {
+  searchModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => searchInput.focus(), 100);
+});
+
+searchClose.addEventListener('click', () => {
+  searchModal.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+// Simple search functionality
+const pages = [
+  { name: 'Home', url: 'index.html' },
+  { name: 'About Us', url: 'about.html' },
+  { name: 'Plans', url: 'index.html#pricing' },
+  { name: 'Store', url: 'store.html' },
+  { name: 'Join', url: 'join.html' }
+];
+
+searchInput.addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase();
+  const results = pages.filter(page => page.name.toLowerCase().includes(query));
+  const resultsDiv = document.querySelector('.search-results');
+  
+  if (query && results.length > 0) {
+    resultsDiv.innerHTML = results.map(page => 
+      `<a href="${page.url}" style="display:block;padding:15px;color:#5fc4e1;text-decoration:none;border-bottom:1px solid rgba(29,176,225,0.1);font-size:16px;">${page.name}</a>`
+    ).join('');
+  } else if (query && results.length === 0) {
+    resultsDiv.innerHTML = '<p>No results found</p>';
+  } else {
+    resultsDiv.innerHTML = '<p>Try searching for: Home, About, Plans, Store, Join</p>';
+  }
 });
 
 // Navbar scroll effect - hide on scroll down, show on scroll up
