@@ -32,6 +32,17 @@ body{
   transition:all 0.3s ease;
 }
 
+/* Desktop only - transparent navbar at top */
+@media(min-width:901px){
+  .nav{
+    background:transparent !important;
+  }
+  
+  .nav.scrolled-up{
+    background:rgba(10,10,26,0.65) !important;
+  }
+}
+
 .nav.scrolled{
   transform:translateY(-100%);
 }
