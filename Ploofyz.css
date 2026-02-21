@@ -664,6 +664,22 @@ footer{
     opacity:1;
     pointer-events:auto;
   }
+
+.menu-btn{
+  position:relative;
+  z-index:3000;
+  touch-action:manipulation;
+}
+
+.menu-backdrop.active{
+  opacity:1;
+  pointer-events:auto;
+}
+  
+  .menu-backdrop.active{
+    opacity:1;
+    pointer-events:auto;
+  }
   
   /* Hero Mobile */
   .hero{
