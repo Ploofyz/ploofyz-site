@@ -64,6 +64,33 @@ body{
 .nav-menu{
   display:flex;
   gap:28px;
+  align-items:center;
+}
+
+.nav-menu a{
+  text-decoration:none;
+  color:#5fc4e1;
+  transition:color 0.3s;
+}
+
+.nav-menu a:hover{
+  color:#1db0e1;
+}
+
+/* Desktop search button */
+.desktop-search-btn{
+  background:transparent;
+  border:none;
+  color:#5fc4e1;
+  cursor:pointer;
+  padding:8px;
+  transition:color 0.3s;
+  display:inline-flex;
+  align-items:center;
+}
+
+.desktop-search-btn:hover{
+  color:#1db0e1;
 }
 
 .close-btn{
@@ -107,16 +134,6 @@ body{
 .logo a{
   display:block;
   line-height:0;
-}
-
-.nav a{
-  text-decoration:none;
-  color:#5fc4e1;
-  transition:color 0.3s;
-}
-
-.nav a:hover{
-  color:#1db0e1;
 }
 
 /* HERO */

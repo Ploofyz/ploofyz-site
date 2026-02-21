@@ -39,6 +39,12 @@
 <a href="index.html#pricing">Plans</a>
 <a href="store.html">Store</a>
 <a href="join.html">Join</a>
+<button class="desktop-search-btn" aria-label="Search">
+<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+<path d="M13 13L16.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
+</button>
 </nav>
 </header>
 <div class="menu-backdrop"></div>
@@ -153,6 +159,7 @@ const navMenu = document.querySelector('.nav-menu');
 const menuBackdrop = document.querySelector('.menu-backdrop');
 const storeBtn = document.querySelector('.store-btn');
 const searchBtn = document.querySelector('.search-btn');
+const desktopSearchBtn = document.querySelector('.desktop-search-btn');
 const searchModal = document.querySelector('.search-modal');
 const searchClose = document.querySelector('.search-close');
 const searchInput = document.querySelector('.search-input');
@@ -181,11 +188,15 @@ if(storeBtn) {
   });
 }
 
-searchBtn.addEventListener('click', () => {
+// Search functionality for both mobile and desktop
+const openSearch = () => {
   searchModal.classList.add('active');
   document.body.style.overflow = 'hidden';
   setTimeout(() => searchInput.focus(), 100);
-});
+};
+
+searchBtn.addEventListener('click', openSearch);
+desktopSearchBtn.addEventListener('click', openSearch);
 
 searchClose.addEventListener('click', () => {
   searchModal.classList.remove('active');
