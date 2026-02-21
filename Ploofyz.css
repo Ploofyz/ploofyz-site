@@ -561,6 +561,10 @@ footer{
     backdrop-filter:blur(20px);
     -webkit-backdrop-filter:blur(20px);
   }
+
+  .menu-open .nav{
+    z-index:10003;
+  }
   .nav.scrolled-up{
     padding:12px 20px;
   }
