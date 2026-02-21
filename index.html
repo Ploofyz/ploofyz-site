@@ -281,9 +281,12 @@ const pages = [
   { name: 'Join', url: 'join.html' }
 ];
 
+let currentSearchResults = [];
+
 searchInput.addEventListener('input', (e) => {
   const query = e.target.value.toLowerCase();
   const results = pages.filter(page => page.name.toLowerCase().includes(query));
+  currentSearchResults = results;
   const resultsDiv = document.querySelector('.search-results');
   
   if (query && results.length > 0) {
@@ -294,6 +297,21 @@ searchInput.addEventListener('input', (e) => {
     resultsDiv.innerHTML = '<p style="display:block;">No results found</p>';
   } else {
     resultsDiv.innerHTML = '';
+  }
+});
+
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+
+  const query = searchInput.value.toLowerCase().trim();
+  if (!query) return;
+
+  const results = currentSearchResults.length
+    ? currentSearchResults
+    : pages.filter(page => page.name.toLowerCase().includes(query));
+
+  if (results.length > 0) {
+    window.location.href = results[0].url;
   }
 });
 
