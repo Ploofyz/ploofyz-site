@@ -1577,17 +1577,19 @@ footer{
 }
 
 /* Header and Navigation Z-Index Fixes */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 64px;
-  background: rgba(10,10,10,0.65);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-  z-index: 9999;
+@media(min-width:901px){
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+    z-index: 9999;
+  }
 }
 
 .navbar {
