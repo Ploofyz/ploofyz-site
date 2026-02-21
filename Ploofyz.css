@@ -544,6 +544,10 @@ footer{
   font-size:14px;
 }
 
+.search-results p{
+  display:none;
+}
+
 /* MOBILE */
 
 @media(max-width:900px){

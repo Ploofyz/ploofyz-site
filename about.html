@@ -57,7 +57,6 @@
 </svg>
 </div>
 <div class="search-results">
-<p>Try searching for: Home, About, Plans, Store, Join</p>
 </div>
 </div>
 
@@ -137,9 +136,9 @@ searchInput.addEventListener('input', (e) => {
       `<a href="${page.url}" style="display:block;padding:15px;color:#5fc4e1;text-decoration:none;border-bottom:1px solid rgba(29,176,225,0.1);font-size:16px;">${page.name}</a>`
     ).join('');
   } else if (query && results.length === 0) {
-    resultsDiv.innerHTML = '<p>No results found</p>';
+    resultsDiv.innerHTML = '<p style="display:block;">No results found</p>';
   } else {
-    resultsDiv.innerHTML = '<p>Try searching for: Home, About, Plans, Store, Join</p>';
+    resultsDiv.innerHTML = '';
   }
 });
 
