@@ -55,6 +55,9 @@ body{
   cursor:pointer;
   padding:8px;
   transition:color 0.3s;
+  position:relative;
+  z-index:3000;
+  touch-action:manipulation;
 }
 
 .search-btn:hover, .menu-btn:hover, .store-btn:hover{
@@ -554,8 +557,9 @@ footer{
   /* Navbar Mobile - Apple Style */
   .nav{
     padding:12px 20px;
-    background:rgba(10,10,26,0.95);
+    background:rgba(10,10,26,0.85);
     backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
   }
   .nav.scrolled-up{
     padding:12px 20px;
@@ -642,7 +646,8 @@ footer{
   
   /* Menu overlay backdrop */
   .menu-backdrop{
-    display:none !important;
+    opacity:0;
+    pointer-events:none;
     position:fixed;
     top:0;
     left:0;
@@ -651,11 +656,12 @@ footer{
     background:rgba(0,0,0,0.7);
     z-index:1500;
     backdrop-filter:blur(5px);
-    pointer-events:none;
+    -webkit-backdrop-filter:blur(5px);
+    transition:opacity .3s ease;
   }
   
   .menu-backdrop.active{
-    display:block !important;
+    opacity:1;
     pointer-events:auto;
   }
   
