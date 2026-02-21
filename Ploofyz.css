@@ -570,11 +570,6 @@ footer{
     align-items:center;
   }
   
-  /* Hide desktop nav */
-  .nav nav{
-    display:none;
-  }
-  
   /* Mobile menu overlay */
   .nav-menu{
     position:fixed;
@@ -585,7 +580,7 @@ footer{
     height:100vh;
     background:rgba(20,20,40,0.98);
     backdrop-filter:blur(30px);
-    display:flex;
+    display:flex !important;
     flex-direction:column;
     padding:80px 40px 40px;
     gap:0;
@@ -596,6 +591,11 @@ footer{
   
   .nav-menu.active{
     right:0;
+  }
+  
+  /* Hide desktop search button in mobile menu */
+  .nav-menu .desktop-search-btn{
+    display:none;
   }
   
   .nav-menu a{
