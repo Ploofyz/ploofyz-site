@@ -654,8 +654,7 @@ footer{
   }
 
   @keyframes navMenuOpen{
-    0%{transform:translate3d(28px,-14px,0) scale(0.92);}
-    60%{transform:translate3d(0,0,0) scale(1.008);}
+    0%{transform:translate3d(24px,-12px,0) scale(0.94);}
     100%{transform:translate3d(0,0,0) scale(1);}
   }
   
