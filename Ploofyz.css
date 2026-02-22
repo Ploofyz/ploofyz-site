@@ -634,6 +634,7 @@ footer{
     gap:0;
     transform:translate3d(24px,-12px,0) scale(0.94);
     opacity:0;
+    pointer-events:none;
     transform-origin:top right;
     transition:transform 360ms cubic-bezier(.22,.61,.36,1), opacity 220ms ease;
     z-index:10001;
@@ -647,6 +648,7 @@ footer{
   .nav-menu.active{
     transform:translate3d(0,0,0) scale(1);
     opacity:1;
+    pointer-events:auto;
     transition-delay:70ms;
     animation:navMenuOpen 420ms cubic-bezier(.22,.61,.36,1) 70ms both;
   }
