@@ -349,20 +349,27 @@ window.addEventListener('scroll', function() {
   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 });
 
-// Scroll-triggered reveal animations for mobile
-const revealObserver = new IntersectionObserver((entries) => {
+// Scroll-triggered fade animation for cards
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('revealed');
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    } else {
+      entry.target.style.opacity = '0';
+      entry.target.style.transform = 'translateY(30px)';
     }
   });
-}, {
-  threshold: 0.15,
-  rootMargin: '0px 0px -50px 0px'
-});
+}, observerOptions);
 
-document.querySelectorAll('.card, .rank-card, .price-card').forEach(el => {
-  revealObserver.observe(el);
+document.querySelectorAll('.card, .price-card, .rank-card').forEach(card => {
+  card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(card);
 });
 </script>
 
