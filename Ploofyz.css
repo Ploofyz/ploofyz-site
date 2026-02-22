@@ -647,6 +647,14 @@ footer{
   .nav-menu.active{
     transform:translate3d(0,0,0) scale(1);
     opacity:1;
+    transition-delay:70ms;
+    animation:navMenuOpen 420ms cubic-bezier(.22,.61,.36,1) 70ms both;
+  }
+
+  @keyframes navMenuOpen{
+    0%{transform:translate3d(24px,-12px,0) scale(0.94);}
+    70%{transform:translate3d(0,0,0) scale(1.01);}
+    100%{transform:translate3d(0,0,0) scale(1);}
   }
   
   /* Hide desktop search button in mobile menu */
@@ -713,6 +721,10 @@ footer{
   position:relative;
   z-index:3000;
   touch-action:manipulation;
+}
+
+.menu-open .menu-btn{
+  z-index:10004;
 }
 
 .menu-open .menu-btn .menu-icon span:nth-child(1){
