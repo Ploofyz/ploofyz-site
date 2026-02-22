@@ -632,17 +632,21 @@ footer{
     flex-direction:column;
     padding:86px 28px 28px;
     gap:0;
-    transform:translateX(110%);
-    transition:transform 420ms cubic-bezier(.22,.61,.36,1);
+    transform:translate3d(24px,-12px,0) scale(0.94);
+    opacity:0;
+    transform-origin:top right;
+    transition:transform 360ms cubic-bezier(.22,.61,.36,1), opacity 220ms ease;
     z-index:10001;
     box-shadow:-12px 0 40px rgba(0,0,0,0.55);
     border-left:1px solid rgba(255,255,255,0.08);
     border-radius:26px 0 0 26px;
     overflow:auto;
+    will-change:transform, opacity;
   }
   
   .nav-menu.active{
-    transform:translateX(0);
+    transform:translate3d(0,0,0) scale(1);
+    opacity:1;
   }
   
   /* Hide desktop search button in mobile menu */
