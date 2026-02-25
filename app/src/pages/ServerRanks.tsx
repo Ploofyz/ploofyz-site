@@ -401,10 +401,6 @@ export default function ServerRanks() {
               </p>
               <a 
                 href="/full-permissions-ranks.html"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.location.href = '/full-permissions-ranks.html';
-                }}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',

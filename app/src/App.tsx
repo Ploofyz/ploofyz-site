@@ -25,6 +25,26 @@ function App() {
     };
   }, []);
 
+  // Handle hash-based navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1); // Remove the '#'
+      if (hash && ['home', 'about', 'store', 'join', 'ranks'].includes(hash)) {
+        setCurrentPage(hash as Page);
+      }
+    };
+
+    // Check hash on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
+
   // Handle navigation
   const navigateTo = (page: Page) => {
     setCurrentPage(page);
