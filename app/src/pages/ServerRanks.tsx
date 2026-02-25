@@ -277,10 +277,10 @@ export default function ServerRanks() {
                 <table className="ranks-table">
                   <thead>
                     <tr>
-                      <th>Rank</th>
-                      <th>Perks</th>
-                      <th>Duration</th>
-                      <th>Price</th>
+                      <th style={{ textAlign: 'left' }}>Rank</th>
+                      <th style={{ textAlign: 'left' }}>Perks</th>
+                      <th style={{ textAlign: 'center' }}>Duration</th>
+                      <th style={{ textAlign: 'center' }}>Price</th>
                       <th></th>
                     </tr>
                   </thead>
