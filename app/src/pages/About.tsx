@@ -28,7 +28,7 @@ const stats = [
   { value: '99.9%', label: 'Uptime Guarantee', icon: <Zap size={24} /> },
   { value: '24/7', label: 'Support Available', icon: <Users size={24} /> },
   { value: 'SEA', label: 'Server Location', icon: <Globe size={24} /> },
-  { value: 'Ryzen', label: 'Processors', icon: <Cpu size={24} /> }
+  { value: 'Server', label: 'Processors', icon: <Cpu size={24} /> }
 ];
 
 // Features data
@@ -36,12 +36,12 @@ const features = [
   {
     icon: <Server size={32} />,
     title: 'High-Performance Hardware',
-    description: 'Our servers are powered by the latest AMD Ryzen processors and NVMe SSD storage, ensuring lightning-fast performance for your Minecraft worlds.'
+    description: 'Our servers are powered by the server processors and NVMe SSD storage, ensuring lightning-fast performance for our Minecraft worlds.'
   },
   {
     icon: <Shield size={32} />,
     title: 'Enterprise Security',
-    description: 'With advanced DDoS protection and automated backups, your server data is always safe and secure. We prioritize your peace of mind.'
+    description: 'With advanced DDoS protection and automated backups, our server data is always safe and secure. We prioritize your peace of mind.'
   },
   {
     icon: <Globe size={32} />,
@@ -171,7 +171,7 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             Your Trusted Partner for
-            <span className="gradient-text"> Minecraft Hosting</span>
+            <span className="gradient-text"> Ploofyz World</span>
           </motion.h1>
 
           <motion.p
@@ -181,7 +181,7 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             We started with a simple mission: to provide fast, stable, and powerful 
-            Minecraft hosting that&apos;s optimized for Malaysian, Singaporean, and SEA players.
+            Minecraft server that&apos;s optimized for Malaysian, Singaporean, and SEA players.
           </motion.p>
         </motion.div>
       </section>
@@ -218,18 +218,18 @@ export default function About() {
                 <div className="story-paragraphs">
                   <p className="body-md">
                     Welcome to Ploofyz, your trusted partner for high-performance Minecraft 
-                    server hosting in Southeast Asia. Founded by passionate gamers and 
+                    server in Southeast Asia. Founded by passionate gamers and 
                     tech enthusiasts, we understand the importance of a smooth, lag-free 
                     gaming experience.
                   </p>
                   <p className="body-md">
-                    Our servers are powered by high-performance Ryzen processors, ensuring 
-                    smooth gameplay even with heavy modpacks. With enterprise-grade DDoS 
-                    protection, your world stays online 24/7, giving you and your players 
-                    the reliability you deserve.
+                    Our servers are powered by high-performance server processors, ensuring 
+                    smooth gameplay even with heavy modpacks. With enterprise grade DDoS 
+                    protection, our world stays online 24/7, giving you best experience 
+                    playing Ploofyz.
                   </p>
                   <p className="body-md">
-                    Whether you&apos;re running a small survival server with friends or managing 
+                    Whether you&apos;re running a lore with friends or managing 
                     a large community, we have the perfect plan for you. Our team is dedicated 
                     to providing exceptional support and continuously improving our infrastructure 
                     to meet your needs.
@@ -249,7 +249,7 @@ export default function About() {
               <h2 className="section-title heading-md">What Sets Us Apart</h2>
               <p className="body-lg">
                 We combine cutting-edge technology with exceptional service to deliver 
-                the best Minecraft hosting experience.
+                the best Minecraft experience.
               </p>
             </motion.div>
 

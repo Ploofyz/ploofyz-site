@@ -33,12 +33,12 @@ const features = [
   {
     icon: <Zap size={28} />,
     title: 'Fast. Stable. Ready.',
-    description: 'High-performance servers built for smooth gameplay with Ryzen processors and NVMe storage.'
+    description: 'High-performance servers built for smooth gameplay with server processors and NVMe storage.'
   },
   {
     icon: <Shield size={28} />,
     title: 'Protected by Design',
-    description: 'Enterprise-grade DDoS protection keeps your server online and secure 24/7.'
+    description: 'Enterprise grade DDoS protection keeps our server online and secure 24/7.'
   },
   {
     icon: <Globe size={28} />,
@@ -266,7 +266,7 @@ export default function Home({ onNavigate }: HomeProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Upgrade your Minecraft experience with premium hosting, 
+            Upgrade your Minecraft experience with, 
             exclusive ranks, and instant delivery.
           </motion.p>
 
@@ -312,8 +312,8 @@ export default function Home({ onNavigate }: HomeProps) {
             <motion.div className="section-header" variants={fadeInUp}>
               <h2 className="section-title heading-lg">Why Choose Ploofyz?</h2>
               <p className="body-lg">
-                Experience Minecraft hosting reimagined with cutting-edge technology 
-                and unmatched performance.
+                Experience Minecraft server with lot of stuff 
+                you can do and easter egg.
               </p>
             </motion.div>
 
@@ -376,7 +376,7 @@ export default function Home({ onNavigate }: HomeProps) {
             <motion.div className="section-header" variants={fadeInUp}>
               <h2 className="section-title heading-lg">Choose Your Plan</h2>
               <p className="body-lg">
-                Flexible hosting plans designed for every type of Minecraft server, 
+                Flexible plans designed for every type of Minecraft server, 
                 from small communities to large networks.
               </p>
             </motion.div>
@@ -416,7 +416,7 @@ export default function Home({ onNavigate }: HomeProps) {
           <AnimatedSection>
             <motion.div className="cta-content" variants={fadeInUp}>
               <h2 className="cta-title heading-md">
-                Ready to Launch Your World?
+                Ready to Experience Plooyz?
               </h2>
               <button 
                 className="discord-btn"
