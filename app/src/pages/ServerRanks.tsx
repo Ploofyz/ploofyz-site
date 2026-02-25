@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView, useAnimation, type Variants } from 'framer-motion';
-import { Star, Check, X, Crown, Zap, Shield, Sparkles } from 'lucide-react';
+import { Star, Check, X, Crown, Zap, Shield, Sparkles, ArrowRight } from 'lucide-react';
 
 // Animation variants
 const fadeInUp: Variants = {
@@ -376,6 +376,64 @@ export default function ServerRanks() {
                   </motion.div>
                 ))}
               </div>
+            </motion.div>
+
+            {/* View Full Perks Button - Under Table */}
+            <motion.div 
+              className="view-full-perks-container"
+              variants={fadeInUp}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '32px 24px',
+                marginTop: '8px',
+                borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+              }}
+            >
+              <p style={{ 
+                fontSize: '14px', 
+                color: 'rgba(255, 255, 255, 0.5)',
+                margin: 0
+              }}>
+                Want to see the complete list of all commands and permissions?
+              </p>
+              <a 
+                href="full-permission-ranks.html"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  padding: '14px 28px',
+                  background: 'transparent',
+                  color: '#e2e8f0',
+                  border: '2px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  fontWeight: 600,
+                  fontSize: '15px',
+                  textDecoration: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#6366f1';
+                  e.currentTarget.style.background = 'rgba(99, 102, 241, 0.1)';
+                  e.currentTarget.style.color = '#fff';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(99, 102, 241, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  e.currentTarget.style.background = 'transparent';
+                  e.currentTarget.style.color = '#e2e8f0';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                <span>View Full Perks</span>
+                <ArrowRight size={18} style={{ transition: 'transform 0.3s ease' }} />
+              </a>
             </motion.div>
 
             <motion.div className="ranks-table-footer" variants={fadeInUp}>
