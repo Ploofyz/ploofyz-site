@@ -120,6 +120,9 @@ const pricingPlans = [
   }
 ];
 
+// Feature flag to control pricing section visibility
+const SHOW_PRICING_SECTION: boolean = false;
+
 // Animated Section Component
 function AnimatedSection({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   const ref = useRef(null);
@@ -370,45 +373,47 @@ export default function Home({ onNavigate }: HomeProps) {
       </ScrollScaleSection>
 
       {/* Pricing Section with Scroll Reveal */}
-      <ScrollScaleSection>
-        <section className="pricing-section" id="pricing">
-          <AnimatedSection>
-            <motion.div className="section-header" variants={fadeInUp}>
-              <h2 className="section-title heading-lg">Choose Your Plan</h2>
-              <p className="body-lg">
-                Flexible plans designed for every type of Minecraft server, 
-                from small communities to large networks.
-              </p>
-            </motion.div>
+      {SHOW_PRICING_SECTION && (
+        <ScrollScaleSection>
+          <section className="pricing-section" id="pricing">
+            <AnimatedSection>
+              <motion.div className="section-header" variants={fadeInUp}>
+                <h2 className="section-title heading-lg">Choose Your Plan</h2>
+                <p className="body-lg">
+                  Flexible plans designed for every type of Minecraft server, 
+                  from small communities to large networks.
+                </p>
+              </motion.div>
 
-            <div className="pricing-grid">
-              {pricingPlans.map((plan) => (
-                <motion.div
-                  key={plan.name}
-                  className={`price-card ${plan.popular ? 'popular' : ''}`}
-                  variants={fadeInUp}
-                  whileHover={{ y: -8, transition: { duration: 0.15 } }}
-                >
-                  {plan.popular && (
-                    <span className="popular-badge">Most Popular</span>
-                  )}
-                  <h3 className="price-name">{plan.name}</h3>
-                  <div className="price-amount">{plan.price}</div>
-                  <p className="price-period">{plan.period}</p>
-                  <ul className="price-features">
-                    {plan.features.map((feature) => (
-                      <li key={feature}>{feature}</li>
-                    ))}
-                  </ul>
-                  <button className="btn-primary" style={{ width: '100%' }}>
-                    Get Started
-                  </button>
-                </motion.div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </section>
-      </ScrollScaleSection>
+              <div className="pricing-grid">
+                {pricingPlans.map((plan) => (
+                  <motion.div
+                    key={plan.name}
+                    className={`price-card ${plan.popular ? 'popular' : ''}`}
+                    variants={fadeInUp}
+                    whileHover={{ y: -8, transition: { duration: 0.15 } }}
+                  >
+                    {plan.popular && (
+                      <span className="popular-badge">Most Popular</span>
+                    )}
+                    <h3 className="price-name">{plan.name}</h3>
+                    <div className="price-amount">{plan.price}</div>
+                    <p className="price-period">{plan.period}</p>
+                    <ul className="price-features">
+                      {plan.features.map((feature) => (
+                        <li key={feature}>{feature}</li>
+                      ))}
+                    </ul>
+                    <button className="btn-primary" style={{ width: '100%' }}>
+                      Get Started
+                    </button>
+                  </motion.div>
+                ))}
+              </div>
+            </AnimatedSection>
+          </section>
+        </ScrollScaleSection>
+      )}
 
       {/* CTA Section with Scroll Reveal */}
       <ScrollScaleSection>
