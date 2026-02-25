@@ -70,7 +70,10 @@
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
+<<<<<<< HEAD
     "gh-pages": "^6.3.0",
+=======
+>>>>>>> d334e3191f94f53626b7827bb51bfd354f847ef0
     "globals": "^16.5.0",
     "kimi-plugin-inspect-react": "^1.0.3",
     "postcss": "^8.5.6",

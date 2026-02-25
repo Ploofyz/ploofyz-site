@@ -159,7 +159,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <img src="ploofyz-logo.png" alt="Ploofyz" />
+            <img src="/ploofyz-logo.png" alt="Ploofyz" />
           </motion.div>
 
           {/* Desktop Navigation */}

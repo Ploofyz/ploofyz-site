@@ -31,7 +31,11 @@ const ranksData = [
     color: '#8FBACC',
     bgColor: 'rgba(143, 186, 204, 0.15)',
     price: 'MYR 12',
+<<<<<<< HEAD
     duration: '14d',
+=======
+    duration: '14D',
+>>>>>>> d334e3191f94f53626b7827bb51bfd354f847ef0
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -52,7 +56,11 @@ const ranksData = [
     color: '#7FB86D',
     bgColor: 'rgba(127, 184, 109, 0.15)',
     price: 'MYR 18',
+<<<<<<< HEAD
     duration: '14d',
+=======
+    duration: '14D',
+>>>>>>> d334e3191f94f53626b7827bb51bfd354f847ef0
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -73,7 +81,11 @@ const ranksData = [
     color: '#F59E0B',
     bgColor: 'rgba(245, 158, 11, 0.15)',
     price: 'MYR 38',
+<<<<<<< HEAD
     duration: '14d',
+=======
+    duration: '14D',
+>>>>>>> d334e3191f94f53626b7827bb51bfd354f847ef0
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -277,10 +289,17 @@ export default function ServerRanks() {
                 <table className="ranks-table">
                   <thead>
                     <tr>
+<<<<<<< HEAD
                       <th>Rank</th>
                       <th>Perks</th>
                       <th>Duration</th>
                       <th>Price</th>
+=======
+                      <th style={{ textAlign: 'left' }}>Rank</th>
+                      <th style={{ textAlign: 'left' }}>Perks</th>
+                      <th style={{ textAlign: 'center' }}>Duration</th>
+                      <th style={{ textAlign: 'center' }}>Price</th>
+>>>>>>> d334e3191f94f53626b7827bb51bfd354f847ef0
                       <th></th>
                     </tr>
                   </thead>
