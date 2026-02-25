@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Permissions | Ploofyz</title>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-highlight: rgba(255, 255, 255, 0.15);
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --accent-blue: #007aff;
+            --accent-purple: #bf5af2;
+            --accent-indigo: #5e5ce6;
+            --accent-cyan: #5ac8fa;
+            --accent-green: #34c759;
+            --accent-orange: #ff9500;
+            --accent-pink: #ff2d55;
+            --vip-color: #ff9500;
+            --elite-color: #5ac8fa;
+            --hero-color: #34c759;
+            --nexus-color: #bf5af2;
+            --phantom-color: #ff2d55;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+            background: #000;
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+        }
+
+        /* Animated Gradient Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-indigo) 0%, transparent 70%);
+            bottom: -150px;
+            left: -100px;
+            animation-delay: -5s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        /* Noise Texture Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-green);
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 0%, #86868b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 21px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* Table Container */
+        .table-container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.05);
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
+            opacity: 0;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 24px 16px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            text-align: center;
+            position: relative;
+        }
+
+        th:first-child {
+            text-align: left;
+            padding-left: 24px;
+            width: 30%;
+            color: var(--text-secondary);
+        }
+
+        th::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-highlight), transparent);
+        }
+
+        /* Rank Column Headers with Colors */
+        th.vip-header { 
+            color: var(--vip-color); 
+            text-shadow: 0 0 20px rgba(255, 149, 0, 0.3);
+        }
+        th.elite-header { 
+            color: var(--elite-color); 
+            text-shadow: 0 0 20px rgba(90, 200, 250, 0.3);
+        }
+        th.hero-header { 
+            color: var(--hero-color); 
+            text-shadow: 0 0 20px rgba(52, 199, 89, 0.3);
+        }
+        th.nexus-header { 
+            color: var(--nexus-color); 
+            text-shadow: 0 0 20px rgba(191, 90, 242, 0.3);
+        }
+        th.phantom-header { 
+            color: var(--phantom-color); 
+            text-shadow: 0 0 20px rgba(255, 45, 85, 0.3);
+        }
+
+        tbody tr {
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        tbody tr::after {
+            content: '';
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
+
+        tbody tr:last-child::after {
+            display: none;
+        }
+
+        td {
+            padding: 16px;
+            text-align: center;
+            font-size: 15px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        td:first-child {
+            text-align: left;
+            padding-left: 24px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Simple Checkmarks - No Circles */
+        .check {
+            color: var(--accent-green);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .check.vip-check { color: var(--vip-color); }
+        .check.elite-check { color: var(--elite-color); }
+        .check.hero-check { color: var(--hero-color); }
+        .check.nexus-check { color: var(--nexus-color); }
+        .check.phantom-check { color: var(--phantom-color); }
+
+        .empty {
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        /* Action Button */
+        .action-container {
+            text-align: center;
+            margin-top: 48px;
+            animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-indigo) 100%);
+            color: white;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.022em;
+            text-decoration: none;
+            border-radius: 980px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 4px 20px rgba(94, 92, 230, 0.3),
+                inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 
+                0 8px 30px rgba(94, 92, 230, 0.4),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            h1 { font-size: 40px; }
+            .table-container { border-radius: 16px; }
+            th, td { padding: 12px 8px; font-size: 13px; }
+            th:first-child, td:first-child { padding-left: 16px; }
+            th { font-size: 12px; }
+        }
+
+        @media (max-width: 640px) {
+            h1 { font-size: 32px; }
+            .subtitle { font-size: 17px; }
+            .container { padding: 40px 16px; }
+            th { font-size: 11px; padding: 10px 4px; }
+            td { font-size: 12px; padding: 10px 4px; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <div class="ambient-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <div class="noise"></div>
+
+    <div class="container">
+        <header>
+            <div class="badge">
+                <span class="badge-dot"></span>
+                Premium Ranks
+            </div>
+            <h1>Rank Permissions</h1>
+            <p class="subtitle">Complete overview of commands and perks available for each rank tier. Upgrade to unlock more features.</p>
+        </header>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Permission</th>
+                        <th class="vip-header">VIP</th>
+                        <th class="elite-header">Elite</th>
+                        <th class="hero-header">Hero</th>
+                        <th class="nexus-header">Nexus</th>
+                        <th class="phantom-header">Phantom</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>chatcolor</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>colorpicker</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>dispose</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>getbook</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>list</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>playtime</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>repaircost</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>silentchest</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>solve</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>suicide</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>votetop</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>workbench</td><td><span class="check vip-check">✓</span></td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>afkcheck</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>cartographytable</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>checkexp</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>colors</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>ender</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>options</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>repair</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>sc</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>smithingtable</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>worth</td><td class="empty">—</td><td><span class="check elite-check">✓</span></td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>cheque</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>distance</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>dye</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>feed</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>glow</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>grindstone</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>hat</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>lastonline</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>me</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>near</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>nick</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>playtimetop</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>realname</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>recipe</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>ride</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>shakeitoff</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>stonecutter</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>worthlist</td><td class="empty">—</td><td class="empty">—</td><td><span class="check hero-check">✓</span></td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>anvil</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>anvilrepaircost</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>back</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>checkperm</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>condense</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>entityinfo</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>findbiome</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>giftpet</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>groundclean</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>head</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>loom</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>merchant</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>mobhead</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>ptime</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>pweather</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>rankdown</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>scavenge</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>se</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>seen</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>shoot</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>sound</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>toast</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>uncondense</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check nexus-check">✓</span></td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>burn</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>heal</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>ignore</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>launch</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>mailall</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>scale</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>warnings</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td><span class="check phantom-check">✓</span></td></tr>
+                    <tr><td>silence</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td><td class="empty">—</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="action-container">
+            <a href="store.html" class="btn-primary">
+                <span>View Rank Store</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
