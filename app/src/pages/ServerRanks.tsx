@@ -30,7 +30,7 @@ const ranksData = [
     icon: <Star size={24} />,
     color: '#8FBACC',
     bgColor: 'rgba(143, 186, 204, 0.15)',
-    price: 'MYR 12',
+    price: 'MYR\u00A012',
     duration: '14d',
     durationType: 'temp',
     perks: [
