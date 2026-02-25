@@ -31,7 +31,7 @@ const ranksData = [
     color: '#8FBACC',
     bgColor: 'rgba(143, 186, 204, 0.15)',
     price: 'MYR 12',
-    duration: '14d',
+    duration: '14D',
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -52,7 +52,7 @@ const ranksData = [
     color: '#7FB86D',
     bgColor: 'rgba(127, 184, 109, 0.15)',
     price: 'MYR 18',
-    duration: '14d',
+    duration: '14D',
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -73,7 +73,7 @@ const ranksData = [
     color: '#F59E0B',
     bgColor: 'rgba(245, 158, 11, 0.15)',
     price: 'MYR 38',
-    duration: '14d',
+    duration: '14D',
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
