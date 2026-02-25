@@ -400,7 +400,7 @@ export default function ServerRanks() {
                 Want to see the complete list of all commands and permissions?
               </p>
               <a 
-                href="full-permission-ranks.html"
+                href="full-permissions-ranks.html"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
