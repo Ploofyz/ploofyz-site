@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Ranks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background: #1e293b;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
+                        0 0 0 1px rgba(99, 102, 241, 0.1),
+                        0 0 20px rgba(99, 102, 241, 0.05);
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 50%, #a855f7 100%);
+            padding: 32px 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #334155;
+            border-bottom: 2px solid #475569;
+        }
+
+        th {
+            padding: 16px 24px;
+            text-align: left;
+            font-weight: 600;
+            color: #94a3b8;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #334155;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideIn 0.5s ease-out backwards;
+        }
+
+        tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        tbody tr:nth-child(4) { animation-delay: 0.4s; }
+        tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        tbody tr:hover {
+            background: #2d3748;
+            transform: translateX(4px) scale(1.005);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        td {
+            padding: 24px;
+            color: #e2e8f0;
+            font-size: 15px;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover td {
+            color: #f1f5f9;
+        }
+
+        .rank-cell {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .rank-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        tbody tr:hover .rank-icon {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-icon.vip {
+            background: rgba(180, 217, 232, 0.2);
+            color: #B4D9E8;
+        }
+
+        .rank-icon.elite {
+            background: rgba(127, 184, 109, 0.2);
+            color: #7FB86D;
+        }
+
+        .rank-icon.hero {
+            background: rgba(245, 200, 77, 0.2);
+            color: #F5C84D;
+        }
+
+        .rank-icon.nexus {
+            background: rgba(255, 140, 46, 0.2);
+            color: #FF8C2E;
+        }
+
+        .rank-icon.phantom {
+            background: rgba(199, 69, 40, 0.2);
+            color: #C74528;
+        }
+
+        .rank-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .rank-name.vip {
+            color: #B4D9E8;
+            text-shadow: 0 0 10px rgba(180, 217, 232, 0.5);
+        }
+
+        .rank-name.elite {
+            color: #7FB86D;
+            text-shadow: 0 0 10px rgba(127, 184, 109, 0.5);
+        }
+
+        .rank-name.hero {
+            color: #F5C84D;
+            text-shadow: 0 0 10px rgba(245, 200, 77, 0.5);
+        }
+
+        .rank-name.nexus {
+            color: #FF8C2E;
+            text-shadow: 0 0 10px rgba(255, 140, 46, 0.5);
+        }
+
+        .rank-name.phantom {
+            color: #C74528;
+            text-shadow: 0 0 10px rgba(199, 69, 40, 0.5);
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 18px;
+            color: #f1f5f9;
+        }
+
+        .duration {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .duration.temp {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .duration.perm {
+            background: rgba(139, 92, 246, 0.15);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        tbody tr:hover .duration {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
+
+        .perks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 16px;
+        }
+
+        .perk {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #94a3b8;
+            transition: all 0.2s ease;
+        }
+
+        .perk.active {
+            color: #34d399;
+        }
+
+        .perk.inactive {
+            color: #64748b;
+        }
+
+        tbody tr:hover .perk.active {
+            color: #4ade80;
+            transform: translateX(2px);
+        }
+
+        .perk::before {
+            content: '✓';
+            font-weight: bold;
+        }
+
+        .perk.active::before {
+            color: #34d399;
+        }
+
+        .perk.inactive::before {
+            color: #475569;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .buy-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .buy-btn:hover::before {
+            left: 100%;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+        }
+
+        .buy-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .footer {
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+            background: #1e293b;
+            border-top: 1px solid #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Server Ranks</h1>
+            <p>Choose your rank to unlock exclusive perks</p>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Perks</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="rank-cell">
+                            <div class="rank-icon vip">⭐</div>
+                            <span class="rank-name vip">VIP</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="perks">
+                            <span class="perk active">Chat Badge</span>
+                            <span class="perk active">Name Color</span>
+                            <span class="perk active">Priority Join</span>
+                            <span class="perk inactive">/fly Command</span>
+                            <span class="perk inactive">2x Homes</span>
+                            <span class="perk inactive">Kit VIP</span>
+                            <span class="perk inactive">/heal Command</span>
+                        </div>
+                    </td>
+                    <td><span class="duration temp">14d</span></td>
+                    <td><span class="price">MYR 12</span></td>
+                    <td><button class="buy-btn">Buy</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="rank-cell">
+                            <div class="rank-icon elite">⚪</div>
+                            <span class="rank-name elite">Elite</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="perks">
+                            <span class="perk active">Chat Badge</span>
+                            <span class="perk active">Name Color</span>
+                            <span class="perk active">/fly Command</span>
+                            <span class="perk active">2x Homes</span>
+                            <span class="perk active">Priority Join</span>
+                            <span class="perk active">Kit VIP</span>
+                            <span class="perk inactive">/heal Command</span>
+                            <span class="perk inactive">Custom Prefix</span>
+                        </div>
+                    </td>
+                    <td><span class="duration temp">14d</span></td>
+                    <td><span class="price">MYR 18</span></td>
+                    <td><button class="buy-btn">Buy</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="rank-cell">
+                            <div class="rank-icon hero">⚡</div>
+                            <span class="rank-name hero">Hero</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="perks">
+                            <span class="perk active">Chat Badge</span>
+                            <span class="perk active">Name Color</span>
+                            <span class="perk active">/fly Command</span>
+                            <span class="perk active">5x Homes</span>
+                            <span class="perk active">Priority Join</span>
+                            <span class="perk active">Kit VIP</span>
+                            <span class="perk active">/heal Command</span>
+                            <span class="perk active">Custom Prefix</span>
+                            <span class="perk inactive">/god Command</span>
+                        </div>
+                    </td>
+                    <td><span class="duration temp">14d</span></td>
+                    <td><span class="price">MYR 38</span></td>
+                    <td><button class="buy-btn">Buy</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="rank-cell">
+                            <div class="rank-icon nexus">👑</div>
+                            <span class="rank-name nexus">Nexus</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="perks">
+                            <span class="perk active">Chat Badge</span>
+                            <span class="perk active">Name Color + Glow</span>
+                            <span class="perk active">/fly Command</span>
+                            <span class="perk active">10x Homes</span>
+                            <span class="perk active">Priority Join</span>
+                            <span class="perk active">Kit Hero</span>
+                            <span class="perk active">/heal Command</span>
+                            <span class="perk active">Custom Prefix</span>
+                            <span class="perk active">/god Command</span>
+                            <span class="perk active">Particle Effects</span>
+                        </div>
+                    </td>
+                    <td><span class="duration perm">Permanent</span></td>
+                    <td><span class="price">MYR 72</span></td>
+                    <td><button class="buy-btn">Buy</button></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="rank-cell">
+                            <div class="rank-icon phantom">🔒</div>
+                            <span class="rank-name phantom">Phantom</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="perks">
+                            <span class="perk active">Chat Badge</span>
+                            <span class="perk active">Animated Name</span>
+                            <span class="perk active">/fly + /god</span>
+                            <span class="perk active">Unlimited Homes</span>
+                            <span class="perk active">Max Priority Join</span>
+                            <span class="perk active">Kit Phantom</span>
+                            <span class="perk active">/heal Command</span>
+                            <span class="perk active">Custom Prefix</span>
+                            <span class="perk active">Particle Effects</span>
+                            <span class="perk active">/vanish Command</span>
+                            <span class="perk active">Pet System</span>
+                        </div>
+                    </td>
+                    <td><span class="duration perm">Permanent</span></td>
+                    <td><span class="price">MYR 95</span></td>
+                    <td><button class="buy-btn">Buy</button></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="footer">
+            Temporary and Permanent ranks are one-time purchase
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+/* Server Ranks Permissions Table Styles */
+
+:root {
+  --table-bg: #ffffff;
+  --table-header-bg: #4a7c59;
+  --table-header-text: #ffffff;
+  --table-border: #ddd;
+  --table-row-hover: #f0f8f0;
+  --table-row-stripe: #f9f9f9;
+  --table-checkmark: #4a7c59;
+  --table-empty: #ccc;
+  --table-text: #333;
+  --table-shadow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f5f5f5;
+}
+
+.container {
+  background-color: var(--table-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px var(--table-shadow);
+}
+
+h1 {
+  text-align: center;
+  color: var(--table-text);
+  margin-bottom: 30px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th {
+  background-color: var(--table-header-bg);
+  color: var(--table-header-text);
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid var(--table-border);
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-row-stripe);
+}
+
+tr:hover {
+  background-color: var(--table-row-hover);
+}
+
+.perk-name {
+  text-align: left;
+  font-weight: 500;
+  color: var(--table-text);
+}
+
+.checkmark {
+  color: var(--table-checkmark);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.empty {
+  color: var(--table-empty);
+  font-size: 16px;
+}
+
+.full-perms {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.perm-btn {
+  display: inline-block;
+  padding: 12px 26px;
+  background: var(--table-header-bg);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.perm-btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  th, td {
+    padding: 8px 4px;
+    font-size: 14px;
+  }
+  
+  .perk-name {
+    font-size: 13px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    margin: 10px 5px;
+  }
+  
+  .container {
+    padding: 10px;
+    border-radius: 6px;
+  }
+  
+  th, td {
+    padding: 6px 2px;
+    font-size: 12px;
+  }
+  
+  .perk-name {
+    font-size: 11px;
+  }
+  
+  h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+/* Rank Column Colors */
+
+.vip {
+  background: rgba(143,186,204,0.12);
+}
+
+.elite {
+  background: rgba(98,140,84,0.12);
+}
+
+.hero {
+  background: rgba(223,172,42,0.12);
+}
+
+.nexus {
+  background: rgba(229,112,16,0.12);
+}
+
+.phantom {
+  background: rgba(144,44,20,0.12);
+}
+
+/* Header colors */
+th.vip { background: #8FBACC; }
+th.elite { background: #628C54; }
+th.hero { background: #DFAC2A; }
+th.nexus { background: #E57010; }
+th.phantom { background: #902C14; }
+
+/* Make header text readable */
+th.vip, th.elite, th.hero, th.nexus, th.phantom {
+  color: white;
+}
