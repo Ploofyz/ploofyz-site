@@ -242,7 +242,7 @@ export default function Store() {
           </motion.p>
 
           <motion.a
-            href="https://your-store.tebex.io"
+            href="https://ploofyz.tebex.io"
             target="_blank"
             rel="noopener noreferrer"
             className="store-btn-gold"
@@ -335,7 +335,7 @@ export default function Store() {
                 Visit our store and start enhancing your Minecraft experience today.
               </p>
               <a
-                href="https://your-store.tebex.io"
+                href="https://ploofyz.tebex.io"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="store-btn-gold"

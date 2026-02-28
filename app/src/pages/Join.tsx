@@ -212,7 +212,7 @@ export default function Join() {
               Support the server and get in-game currency, ranks, and exclusive items!
             </p>
             <a
-              href="https://your-store.tebex.io"
+              href="https://ploofyz.tebex.io"
               target="_blank"
               rel="noopener noreferrer"
               className="store-btn-gold"
