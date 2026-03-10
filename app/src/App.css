@@ -350,6 +350,12 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Team Section */
+.team-section {
+  padding: 120px 24px;
+  background: #000;
+}
+
 /* Ranks Section */
 .ranks-section {
   padding: 120px 24px;
@@ -569,7 +575,7 @@
     width: 100%;
   }
   
-  .features-section,
+  .team-section,
   .ranks-section,
   .pricing-section,
   .cta-section {

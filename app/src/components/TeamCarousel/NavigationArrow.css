@@ -1,0 +1,67 @@
+/**
+ * NavigationArrow component styles
+ * Optimized for touch targets and accessibility
+ */
+
+.navigation-arrow {
+  /* Base button styles */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  
+  /* Remove default button styles */
+  padding: 0;
+  margin: 0;
+  font: inherit;
+}
+
+.navigation-arrow__icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Focus styles for keyboard navigation only */
+.navigation-arrow:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.navigation-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navigation-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .navigation-arrow__icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Desktop optimization - larger arrows with better visibility */
+@media (min-width: 1025px) {
+  .navigation-arrow {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .navigation-arrow__icon {
+    width: 32px;
+    height: 32px;
+  }
+}

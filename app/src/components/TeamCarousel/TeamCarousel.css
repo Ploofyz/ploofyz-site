@@ -1,0 +1,286 @@
+/**
+ * TeamCarousel component styles
+ * Implements fade transitions (600ms) and proper z-index layering
+ * Requirements: 1.2, 7.1, 7.2
+ */
+
+:root {
+  --carousel-max-width: 1200px;
+  --carousel-padding: 2rem 1rem;
+  --carousel-border-radius: 12px;
+  --carousel-min-height: 500px;
+  --fade-duration: 600ms;
+  --avatar-size-mobile: 160px;
+  --avatar-size-tablet: 240px;
+  --avatar-size-desktop: 280px;
+  --thumbnail-size-mobile: 40px;
+  --thumbnail-size-tablet: 44px;
+  --thumbnail-size-desktop: 48px;
+  --touch-target-min: 44px;
+  --spacing-xs: 0.375rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+}
+
+.team-carousel {
+  position: relative;
+  width: 100%;
+  max-width: var(--carousel-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+/* Header Section */
+.team-carousel__header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding: 0 var(--spacing-md);
+}
+
+.team-carousel__title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #8b5cf6;
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.team-carousel__subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Carousel viewport - dark container for profile cards */
+.carousel-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--carousel-border-radius);
+  background-color: #1a1a1a;
+  min-height: var(--carousel-min-height);
+}
+
+/* Carousel container - holds all slides */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: var(--carousel-min-height);
+}
+
+/* Individual slide with fade transition */
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity var(--fade-duration) ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Active slide - visible and interactive */
+.carousel-slide--active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+  will-change: opacity;
+}
+
+/* Navigation arrows positioning - vertically centered on sides */
+.carousel-viewport .navigation-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 11;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+}
+
+.carousel-viewport .navigation-arrow--prev {
+  left: var(--spacing-md);
+}
+
+.carousel-viewport .navigation-arrow--next {
+  right: var(--spacing-md);
+}
+
+/* Thumbnail indicators container */
+.carousel-thumbnails {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+  position: absolute;
+  bottom: var(--spacing-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* Screen reader only content */
+.carousel-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  .team-carousel {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .team-carousel__header {
+    margin-bottom: var(--spacing-lg);
+    padding: 0 var(--spacing-sm);
+  }
+
+  .team-carousel__title {
+    font-size: 2rem;
+  }
+
+  .team-carousel__subtitle {
+    font-size: 1rem;
+  }
+
+  .carousel-viewport {
+    min-height: 500px;
+  }
+
+  .carousel-container {
+    min-height: 500px;
+  }
+
+  .carousel-thumbnails {
+    gap: var(--spacing-xs);
+    bottom: var(--spacing-md);
+  }
+
+  /* Adjust arrow positioning for mobile */
+  .carousel-viewport .navigation-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .carousel-viewport .navigation-arrow--prev {
+    left: var(--spacing-sm);
+  }
+
+  .carousel-viewport .navigation-arrow--next {
+    right: var(--spacing-sm);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .team-carousel__title {
+    font-size: 2.5rem;
+  }
+
+  .team-carousel__subtitle {
+    font-size: 1.0625rem;
+  }
+
+  .carousel-viewport {
+    min-height: 450px;
+  }
+
+  .carousel-container {
+    min-height: 450px;
+  }
+
+  .carousel-thumbnails {
+    bottom: 1.5rem;
+  }
+
+  /* Adjust arrow positioning for tablet */
+  .carousel-viewport .navigation-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .carousel-viewport .navigation-arrow--prev {
+    left: var(--spacing-md);
+  }
+
+  .carousel-viewport .navigation-arrow--next {
+    right: var(--spacing-md);
+  }
+}
+
+@media (min-width: 1025px) {
+  .team-carousel__title {
+    font-size: 3rem;
+  }
+
+  .team-carousel__subtitle {
+    font-size: 1.125rem;
+  }
+
+  .carousel-viewport {
+    min-height: 550px;
+  }
+
+  .carousel-container {
+    min-height: 550px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .team-carousel__header {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .team-carousel__title {
+    font-size: 1.75rem;
+  }
+
+  .team-carousel__subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .carousel-viewport {
+    min-height: 450px;
+  }
+
+  .carousel-container {
+    min-height: 450px;
+  }
+
+  /* Smaller arrows on very small screens */
+  .carousel-viewport .navigation-arrow {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .carousel-viewport .navigation-arrow .navigation-arrow__icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .carousel-viewport .navigation-arrow--prev {
+    left: 4px;
+  }
+
+  .carousel-viewport .navigation-arrow--next {
+    right: 4px;
+  }
+}
+
