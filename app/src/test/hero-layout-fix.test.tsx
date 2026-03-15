@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import { fireEvent } from '@testing-library/react';
-import { fc } from 'fast-check';
+import { render } from '@testing-library/react';
+import fc from 'fast-check';
 import Home from '../pages/Home';
 import Navigation from '../components/Navigation';
 
@@ -147,7 +146,7 @@ describe('Property 1: Fault Condition - Hero Logo Display and Navigation Layout'
       fc.property(
         // Generate viewport widths from mobile to desktop
         fc.integer({ min: 320, max: 1920 }),
-        (viewportWidth) => {
+        (viewportWidth: number) => {
           // Set viewport
           Object.defineProperty(window, 'innerWidth', {
             writable: true,
@@ -379,7 +378,7 @@ describe('Property 2: Preservation - Existing Functionality', () => {
     fc.assert(
       fc.property(
         fc.constantFrom('home', 'vote', 'store', 'join', 'ranks'),
-        (currentPage) => {
+        (currentPage: string) => {
           const { container } = render(
             <Navigation currentPage={currentPage as any} onNavigate={mockNavigate} />
           );
@@ -410,7 +409,7 @@ describe('Property 2: Preservation - Existing Functionality', () => {
     fc.assert(
       fc.property(
         fc.constantFrom(1920, 1024, 768, 640, 480, 320),
-        (viewportWidth) => {
+        (viewportWidth: number) => {
           // Set viewport
           Object.defineProperty(window, 'innerWidth', {
             writable: true,
@@ -443,7 +442,7 @@ describe('Property 2: Preservation - Existing Functionality', () => {
     fc.assert(
       fc.property(
         fc.integer({ min: 1, max: 10 }),
-        (seed) => {
+        (seed: number) => {
           // Use seed to ensure different render cycles
           const { container } = render(<Home onNavigate={mockNavigate} key={seed} />);
           

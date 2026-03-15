@@ -14,6 +14,7 @@ const navItems: { label: string; page: Page }[] = [
   { label: 'Store', page: 'store' },
   { label: 'Join', page: 'join' },
   { label: 'Ranks', page: 'ranks' },
+  { label: 'Vote', page: 'vote' },
 ];
 
 // Searchable content for each page
@@ -47,6 +48,12 @@ const searchableContent: Record<Page, { title: string; content: string; section:
     { title: '24/7 Support', content: 'Get help whenever you need it', section: 'Features' },
     { title: 'Events & Updates', content: 'Be the first to know about events', section: 'Features' },
     { title: 'Server Store', content: 'Support the server and get exclusive items', section: 'Store' },
+  ],
+  vote: [
+    { title: 'Vote for Ploofyz', content: 'Vote on server listing sites to earn in-game rewards', section: 'Hero' },
+    { title: 'Daily Rewards', content: 'Get coins, items, and exclusive perks every time you vote', section: 'Rewards' },
+    { title: 'Streak Bonuses', content: 'Vote consistently to unlock streak rewards and multipliers', section: 'Rewards' },
+    { title: 'Special Items', content: 'Unlock rare cosmetics and exclusive in-game items', section: 'Rewards' },
   ],
   ranks: [
     { title: 'Server Ranks', content: 'Choose your rank to unlock exclusive perks', section: 'Hero' },

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { fc } from 'fast-check';
+import fc from 'fast-check';
 import Home from '../pages/Home';
 import Navigation from '../components/Navigation';
 
@@ -35,7 +35,7 @@ describe('Property 2: Preservation - Existing Functionality', () => {
 
     it('should navigate correctly when clicking navigation buttons', () => {
       const mockNavigate = vi.fn();
-      const { container } = render(<Navigation currentPage="home" onNavigate={mockNavigate} />);
+      render(<Navigation currentPage="home" onNavigate={mockNavigate} />);
       
       // Find and click each navigation button
       const homeBtn = screen.getByText('Home');
@@ -218,7 +218,7 @@ describe('Property 2: Preservation - Existing Functionality', () => {
       fc.assert(
         fc.property(
           fc.constantFrom('home', 'vote', 'store', 'join', 'ranks'),
-          (page) => {
+          (page: string) => {
             const mockNavigate = vi.fn();
             render(<Navigation currentPage={page as any} onNavigate={mockNavigate} />);
             
@@ -236,7 +236,7 @@ describe('Property 2: Preservation - Existing Functionality', () => {
       fc.assert(
         fc.property(
           fc.integer({ min: 320, max: 1920 }),
-          (viewportWidth) => {
+          (viewportWidth: number) => {
             Object.defineProperty(window, 'innerWidth', {
               writable: true,
               configurable: true,

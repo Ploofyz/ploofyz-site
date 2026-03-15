@@ -1450,6 +1450,7 @@
   border-radius: 980px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .duration-badge.temp {

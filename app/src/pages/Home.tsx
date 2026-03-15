@@ -243,6 +243,7 @@ export default function Home({ onNavigate }: HomeProps) {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             A Minecraft Adventure
+            <br />
             Told in Chapter
           </motion.h1>
 
