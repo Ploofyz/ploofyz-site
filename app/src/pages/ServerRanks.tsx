@@ -31,7 +31,7 @@ const ranksData = [
     color: '#8FBACC',
     bgColor: 'rgba(143, 186, 204, 0.15)',
     price: 'MYR 12',
-    duration: '14D',
+    duration: '14 Days',
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -52,7 +52,7 @@ const ranksData = [
     color: '#7FB86D',
     bgColor: 'rgba(127, 184, 109, 0.15)',
     price: 'MYR 18',
-    duration: '14D',
+    duration: '14 Days',
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -70,10 +70,10 @@ const ranksData = [
   {
     name: 'Hero',
     icon: <Zap size={24} />,
-    color: '#F59E0B',
+    color: '#f3de1cff',
     bgColor: 'rgba(245, 158, 11, 0.15)',
     price: 'MYR 38',
-    duration: '14D',
+    duration: '14 Days',
     durationType: 'temp',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -94,7 +94,7 @@ const ranksData = [
     color: '#F97316',
     bgColor: 'rgba(249, 115, 22, 0.15)',
     price: 'MYR 72',
-    duration: 'Permanent',
+    duration: '1 Month',
     durationType: 'perm',
     perks: [
       { name: 'Chat Badge', active: true },
@@ -115,7 +115,7 @@ const ranksData = [
     color: '#EF4444',
     bgColor: 'rgba(239, 68, 68, 0.15)',
     price: 'MYR 95',
-    duration: 'Permanent',
+    duration: '1 Month',
     durationType: 'perm',
     perks: [
       { name: 'Chat Badge', active: true },

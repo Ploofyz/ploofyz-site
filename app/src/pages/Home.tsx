@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useAnimation, useScroll, useTransform, type Variants } from 'framer-motion';
-import { ArrowRight, Zap, Shield, Globe, ChevronDown } from 'lucide-react';
+import { ArrowRight, Zap, ChevronDown } from 'lucide-react';
 import type { Page } from '../App';
+import { TeamCarousel } from '../components/TeamCarousel/TeamCarousel';
 
 interface HomeProps {
   onNavigate: (page: Page) => void;
@@ -28,25 +29,6 @@ const staggerContainer: Variants = {
   }
 };
 
-// Feature data
-const features = [
-  {
-    icon: <Zap size={28} />,
-    title: 'Fast. Stable. Ready.',
-    description: 'High-performance servers built for smooth gameplay with server processors and NVMe storage.'
-  },
-  {
-    icon: <Shield size={28} />,
-    title: 'Protected by Design',
-    description: 'Enterprise grade DDoS protection keeps our server online and secure 24/7.'
-  },
-  {
-    icon: <Globe size={28} />,
-    title: 'Closer to You',
-    description: 'Malaysia-based hosting for better connection across Southeast Asia with low latency.'
-  }
-];
-
 // Ranks data
 const ranks = [
   {
@@ -65,18 +47,18 @@ const ranks = [
     name: 'Hero',
     description: 'Advanced tools, repair features, and environment controls.',
     duration: '14 Days',
-    color: '#F59E0B'
+    color: '#f3de1cff'
   },
   {
     name: 'Nexus',
     description: 'Permanent rank with powerful utilities and reduced costs.',
-    duration: 'Permanent',
+    duration: '1 Month',
     color: '#F97316'
   },
   {
     name: 'Phantom',
     description: 'Top-tier rank with maximum perks and full command access.',
-    duration: 'Permanent',
+    duration: '1 Month',
     color: '#EF4444'
   }
 ];
@@ -260,7 +242,8 @@ export default function Home({ onNavigate }: HomeProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            Play Better. Instantly.
+            A Minecraft Adventure
+            Told in Chapter
           </motion.h1>
 
           <motion.p
@@ -269,8 +252,8 @@ export default function Home({ onNavigate }: HomeProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Upgrade your Minecraft experience with, 
-            exclusive ranks, and instant delivery.
+            A story through quests while keeping 
+            survival Minecraft experience.
           </motion.p>
 
           <motion.div
@@ -308,33 +291,10 @@ export default function Home({ onNavigate }: HomeProps) {
         </motion.div>
       </section>
 
-      {/* Features Section with Scroll Reveal */}
+      {/* Team Section with Scroll Reveal */}
       <ScrollScaleSection>
-        <section className="features-section">
-          <AnimatedSection>
-            <motion.div className="section-header" variants={fadeInUp}>
-              <h2 className="section-title heading-lg">Why Choose Ploofyz?</h2>
-              <p className="body-lg">
-                Experience Minecraft server with lot of stuff 
-                you can do and easter egg.
-              </p>
-            </motion.div>
-
-            <div className="features-grid">
-              {features.map((feature) => (
-                <motion.div
-                  key={feature.title}
-                  className="feature-card"
-                  variants={fadeInUp}
-                  whileHover={{ y: -8, transition: { duration: 0.15 } }}
-                >
-                  <div className="feature-icon">{feature.icon}</div>
-                  <h3 className="feature-title">{feature.title}</h3>
-                  <p className="feature-description">{feature.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </AnimatedSection>
+        <section className="team-section">
+          <TeamCarousel />
         </section>
       </ScrollScaleSection>
 

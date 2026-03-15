@@ -350,6 +350,12 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Team Section */
+.team-section {
+  padding: 120px 24px;
+  background: #000;
+}
+
 /* Ranks Section */
 .ranks-section {
   padding: 120px 24px;
@@ -394,7 +400,7 @@
 
 .rank-card.vip { --rank-color: #8FBACC; }
 .rank-card.elite { --rank-color: #7FB86D; }
-.rank-card.hero { --rank-color: #F59E0B; }
+.rank-card.hero { --rank-color: #f3de1cff; }
 .rank-card.nexus { --rank-color: #F97316; }
 .rank-card.phantom { --rank-color: #EF4444; }
 
@@ -569,7 +575,7 @@
     width: 100%;
   }
   
-  .features-section,
+  .team-section,
   .ranks-section,
   .pricing-section,
   .cta-section {

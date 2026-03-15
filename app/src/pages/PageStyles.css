@@ -1,0 +1,800 @@
+/**
+ * Common Page Styles - Hero Sections with Background
+ */
+
+/* ============================================
+   HOME PAGE HERO
+   ============================================ */
+
+.hero-section-with-bg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 1.5rem 4rem;
+  overflow: hidden;
+}
+
+.hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 15, 0.2) 0%,
+    rgba(10, 10, 15, 0.5) 50%,
+    rgba(10, 10, 15, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.hero-logo-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.hero-logo-centered {
+  width: 200px;
+  height: auto;
+  max-width: 50vw;
+  filter: drop-shadow(0 4px 30px rgba(139, 92, 246, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.hero-logo-centered:hover {
+  transform: scale(1.02);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: #a78bfa;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.hero-title.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+  z-index: 2;
+}
+
+.scroll-indicator svg {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================
+   VOTE PAGE HERO
+   ============================================ */
+
+.vote-hero-with-bg {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 1.5rem 3rem;
+  overflow: hidden;
+}
+
+.vote-hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.vote-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 15, 0.3) 0%,
+    rgba(10, 10, 15, 0.6) 50%,
+    rgba(10, 10, 15, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.vote-logo-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.vote-logo-centered {
+  width: 180px;
+  height: auto;
+  max-width: 50vw;
+  filter: drop-shadow(0 4px 20px rgba(139, 92, 246, 0.4));
+}
+
+.vote-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vote-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.vote-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* ============================================
+   STORE PAGE HERO
+   ============================================ */
+
+.store-hero-with-bg {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 1.5rem 3rem;
+  overflow: hidden;
+}
+
+.store-hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.store-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 15, 0.3) 0%,
+    rgba(10, 10, 15, 0.6) 50%,
+    rgba(10, 10, 15, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.store-logo-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.store-logo-centered {
+  width: 180px;
+  height: auto;
+  max-width: 50vw;
+  filter: drop-shadow(0 4px 20px rgba(251, 191, 36, 0.4));
+}
+
+.store-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.store-hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.store-hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: white;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.store-hero-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.store-btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #0a0a0f;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.store-btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+}
+
+/* ============================================
+   JOIN PAGE HERO
+   ============================================ */
+
+.join-hero-with-bg {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 1.5rem 3rem;
+  overflow: hidden;
+}
+
+.join-hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.join-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 15, 0.3) 0%,
+    rgba(10, 10, 15, 0.6) 50%,
+    rgba(10, 10, 15, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.join-logo-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.join-logo-centered {
+  width: 180px;
+  height: auto;
+  max-width: 50vw;
+  filter: drop-shadow(0 4px 20px rgba(99, 102, 241, 0.4));
+}
+
+.join-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.join-hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.join-hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: white;
+}
+
+.join-hero-title .gradient-text {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.join-hero-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.discord-btn-large {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.discord-btn-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* ============================================
+   RANKS PAGE HERO
+   ============================================ */
+
+.ranks-hero-with-bg {
+  position: relative;
+  min-height: 45vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 1.5rem 3rem;
+  overflow: hidden;
+}
+
+.ranks-hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.ranks-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 10, 15, 0.3) 0%,
+    rgba(10, 10, 15, 0.6) 50%,
+    rgba(10, 10, 15, 0.95) 100%
+  );
+  z-index: 1;
+}
+
+.ranks-logo-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.ranks-logo-centered {
+  width: 180px;
+  height: auto;
+  max-width: 50vw;
+  filter: drop-shadow(0 4px 20px rgba(139, 92, 246, 0.4));
+}
+
+.ranks-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ranks-hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.ranks-hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: white;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ranks-hero-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* View Full Perks Button */
+.view-full-perks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 32px 24px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.view-full-perks-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.view-full-perks-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: transparent;
+  color: #e2e8f0;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-full-perks-btn:hover {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .hero-section-with-bg {
+    min-height: 90vh;
+    padding: 90px 1rem 3rem;
+  }
+  
+  .hero-logo-centered,
+  .vote-logo-centered,
+  .store-logo-centered,
+  .join-logo-centered,
+  .ranks-logo-centered {
+    width: 150px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.0625rem;
+  }
+  
+  .vote-hero-with-bg,
+  .store-hero-with-bg,
+  .join-hero-with-bg,
+  .ranks-hero-with-bg {
+    min-height: 40vh;
+    padding: 90px 1rem 2rem;
+  }
+  
+  .vote-title,
+  .store-hero-title,
+  .join-hero-title,
+  .ranks-hero-title {
+    font-size: 2rem;
+  }
+  
+  .vote-subtitle,
+  .store-hero-subtitle,
+  .join-hero-subtitle,
+  .ranks-hero-subtitle {
+    font-size: 0.9375rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section-with-bg {
+    min-height: 85vh;
+    padding: 80px 0.75rem 2rem;
+  }
+  
+  .hero-logo-centered,
+  .vote-logo-centered,
+  .store-logo-centered,
+  .join-logo-centered,
+  .ranks-logo-centered {
+    width: 130px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  
+  .vote-hero-with-bg,
+  .store-hero-with-bg,
+  .join-hero-with-bg,
+  .ranks-hero-with-bg {
+    min-height: 35vh;
+    padding: 80px 0.75rem 1.5rem;
+  }
+  
+  .vote-title,
+  .store-hero-title,
+  .join-hero-title,
+  .ranks-hero-title {
+    font-size: 1.625rem;
+  }
+  
+  .vote-subtitle,
+  .store-hero-subtitle,
+  .join-hero-subtitle,
+  .ranks-hero-subtitle {
+    font-size: 0.875rem;
+  }
+  
+  .store-hero-icon,
+  .join-hero-icon,
+  .ranks-hero-icon {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .store-btn-gold,
+  .discord-btn-large {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero-logo-centered {
+    width: 240px;
+  }
+  
+  .hero-title {
+    font-size: 4rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.375rem;
+  }
+  
+  .vote-logo-centered,
+  .store-logo-centered,
+  .join-logo-centered,
+  .ranks-logo-centered {
+    width: 200px;
+  }
+  
+  .vote-title,
+  .store-hero-title,
+  .join-hero-title,
+  .ranks-hero-title {
+    font-size: 3rem;
+  }
+  
+  .vote-subtitle,
+  .store-hero-subtitle,
+  .join-hero-subtitle,
+  .ranks-hero-subtitle {
+    font-size: 1.125rem;
+  }
+}
