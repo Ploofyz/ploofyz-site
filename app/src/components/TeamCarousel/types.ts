@@ -7,8 +7,8 @@ export interface TeamMember {
   name: string;
   role: string;
   description: string;
-  avatarSrc: string; // Full body image for profile slides
-  thumbnailSrc: string; // Head-only image for thumbnails
+  avatarSrc: string;
+  fullBodySrc: string;
   roleColor: string;
 }
 

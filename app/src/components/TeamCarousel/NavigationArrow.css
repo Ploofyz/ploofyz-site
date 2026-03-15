@@ -1,6 +1,6 @@
 /**
  * NavigationArrow component styles
- * Optimized for touch targets and accessibility
+ * Completely static arrows with no effects - no circle background
  */
 
 .navigation-arrow {
@@ -8,8 +8,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--touch-target-min);
-  height: var(--touch-target-min);
+  width: 32px;
+  height: 32px;
   border: none;
   border-radius: 0;
   background-color: transparent;
@@ -28,40 +28,60 @@
   height: 32px;
 }
 
-/* Focus styles for keyboard navigation only */
+/* No hover effects */
+.navigation-arrow:hover:not(:disabled) {
+  /* Completely static */
+}
+
+/* Focus styles for keyboard navigation */
 .navigation-arrow:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline: 2px solid rgba(255, 255, 255, 0.5);
   outline-offset: 2px;
+}
+
+/* No active/pressed state effects */
+.navigation-arrow:active:not(:disabled) {
+  /* Completely static */
 }
 
 /* Disabled state */
 .navigation-arrow:disabled {
-  opacity: 0.3;
+  opacity: 0.4;
   cursor: not-allowed;
+}
+
+/* Direction-specific positioning (to be used by parent component) */
+.navigation-arrow--prev {
+  /* Left arrow - parent will position */
+}
+
+.navigation-arrow--next {
+  /* Right arrow - parent will position */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .navigation-arrow {
-    width: 40px;
-    height: 40px;
+    width: 28px;
+    height: 28px;
   }
   
   .navigation-arrow__icon {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 }
 
-/* Desktop optimization - larger arrows with better visibility */
-@media (min-width: 1025px) {
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
   .navigation-arrow {
-    width: 56px;
-    height: 56px;
+    /* Larger touch target for mobile */
+    width: 36px;
+    height: 36px;
   }
   
   .navigation-arrow__icon {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
   }
 }

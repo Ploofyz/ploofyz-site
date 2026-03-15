@@ -6,19 +6,32 @@ import { ThumbnailIndicator } from './ThumbnailIndicator';
 
 describe('ThumbnailIndicator', () => {
   const defaultProps = {
-    imageSrc: '/images/team/test-avatar.png',
+    avatarSrc: '/images/team/test-avatar.png',
+    initials: 'TM',
+    roleColor: '#ec4899',
     alt: 'Test Member',
     isActive: false,
     onClick: vi.fn(),
     index: 0
   };
 
-  it('renders with correct image and alt text', () => {
+  it('renders with correct image and alt text when avatarSrc is provided', () => {
     render(<ThumbnailIndicator {...defaultProps} />);
 
     const image = screen.getByAltText('Test Member');
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', '/images/team/test-avatar.png');
+  });
+
+  it('renders initials placeholder when avatarSrc is empty', () => {
+    const { container } = render(
+      <ThumbnailIndicator {...defaultProps} avatarSrc="" />
+    );
+
+    const placeholder = container.querySelector('.thumbnail-indicator__initials-placeholder');
+    expect(placeholder).toBeInTheDocument();
+    expect(placeholder?.querySelector('span')?.textContent).toBe('TM');
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 
   it('applies active styling when isActive is true', () => {
@@ -37,6 +50,24 @@ describe('ThumbnailIndicator', () => {
 
     const button = container.querySelector('.thumbnail-indicator');
     expect(button).not.toHaveClass('thumbnail-indicator--active');
+  });
+
+  it('applies roleColor as border color when active', () => {
+    const { container } = render(
+      <ThumbnailIndicator {...defaultProps} isActive={true} roleColor="#ff0000" />
+    );
+
+    const button = container.querySelector('.thumbnail-indicator') as HTMLElement;
+    expect(button.style.borderColor).toBe('rgb(255, 0, 0)');
+  });
+
+  it('does not apply inline border color when not active', () => {
+    const { container } = render(
+      <ThumbnailIndicator {...defaultProps} isActive={false} roleColor="#ff0000" />
+    );
+
+    const button = container.querySelector('.thumbnail-indicator') as HTMLElement;
+    expect(button.style.borderColor).toBe('');
   });
 
   it('has aria-current="true" when active', () => {
@@ -126,13 +157,10 @@ describe('ThumbnailIndicator', () => {
 
     const button = screen.getByRole('button');
     
-    // Hover over the button
     await user.hover(button);
     
-    // Button should still be functional
     expect(button).toBeInTheDocument();
     
-    // Click should still work after hover
     await user.click(button);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -141,7 +169,7 @@ describe('ThumbnailIndicator', () => {
     const { container } = render(<ThumbnailIndicator {...defaultProps} />);
 
     const button = container.querySelector('.thumbnail-indicator');
-    const image = container.querySelector('.thumbnail-indicator__image');
+    const image = container.querySelector('.thumbnail-indicator__avatar');
 
     expect(button).toBeInTheDocument();
     expect(image).toBeInTheDocument();

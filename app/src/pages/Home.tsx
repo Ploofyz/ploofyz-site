@@ -47,18 +47,18 @@ const ranks = [
     name: 'Hero',
     description: 'Advanced tools, repair features, and environment controls.',
     duration: '14 Days',
-    color: '#F59E0B'
+    color: '#f3de1cff'
   },
   {
     name: 'Nexus',
     description: 'Permanent rank with powerful utilities and reduced costs.',
-    duration: 'Permanent',
+    duration: '1 Month',
     color: '#F97316'
   },
   {
     name: 'Phantom',
     description: 'Top-tier rank with maximum perks and full command access.',
-    duration: 'Permanent',
+    duration: '1 Month',
     color: '#EF4444'
   }
 ];

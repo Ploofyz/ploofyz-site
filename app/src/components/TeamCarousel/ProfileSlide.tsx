@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { AVATAR_SLIDE_VARIANTS } from './constants';
+import React, { useState, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { FULLBODY_SLIDE_VARIANTS } from './constants';
 import './ProfileSlide.css';
 
 export interface ProfileSlideProps {
@@ -8,7 +8,9 @@ export interface ProfileSlideProps {
   role: string;
   description: string;
   avatarSrc: string;
+  fullBodySrc: string;
   roleColor: string;
+  isActive?: boolean;
 }
 
 export const ProfileSlide: React.FC<ProfileSlideProps> = ({
@@ -16,13 +18,19 @@ export const ProfileSlide: React.FC<ProfileSlideProps> = ({
   role,
   description,
   avatarSrc,
+  fullBodySrc,
   roleColor,
+  isActive,
 }) => {
-  const [imageError, setImageError] = useState(false);
+  const [fullBodyError, setFullBodyError] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+  const reducedMotion = useReducedMotion();
 
-  const handleImageError = () => {
-    setImageError(true);
-  };
+  // Reset error states when the active slide changes
+  useEffect(() => {
+    setFullBodyError(false);
+    setAvatarError(false);
+  }, [isActive]);
 
   // Generate initials from name for fallback
   const getInitials = (name: string): string => {
@@ -32,6 +40,45 @@ export const ProfileSlide: React.FC<ProfileSlideProps> = ({
       .join('')
       .toUpperCase()
       .slice(0, 2);
+  };
+
+  const renderImage = () => {
+    if (!fullBodyError && fullBodySrc) {
+      return (
+        <motion.img
+          src={fullBodySrc}
+          className="profile-slide__fullbody"
+          alt={`${name}'s full body character`}
+          onError={() => setFullBodyError(true)}
+          variants={FULLBODY_SLIDE_VARIANTS}
+          initial="hidden"
+          animate="visible"
+          transition={reducedMotion ? { duration: 0 } : undefined}
+        />
+      );
+    } else if (!avatarError && avatarSrc) {
+      return (
+        <motion.img
+          src={avatarSrc}
+          className="profile-slide__avatar"
+          alt={name}
+          onError={() => setAvatarError(true)}
+          variants={FULLBODY_SLIDE_VARIANTS}
+          initial="hidden"
+          animate="visible"
+          transition={reducedMotion ? { duration: 0 } : undefined}
+        />
+      );
+    } else {
+      return (
+        <div
+          className="profile-slide__avatar-fallback"
+          style={{ backgroundColor: roleColor }}
+        >
+          <span className="profile-slide__initials">{getInitials(name)}</span>
+        </div>
+      );
+    }
   };
 
   return (
@@ -46,29 +93,9 @@ export const ProfileSlide: React.FC<ProfileSlideProps> = ({
           <p className="profile-slide__description">{description}</p>
         </div>
 
-        {/* Right side: Avatar with slide-in animation */}
-        <div className="profile-slide__avatar-container">
-          {imageError ? (
-            <motion.div
-              className="profile-slide__avatar-fallback"
-              style={{ backgroundColor: roleColor }}
-              variants={AVATAR_SLIDE_VARIANTS}
-              initial="hidden"
-              animate="visible"
-            >
-              <span className="profile-slide__initials">{getInitials(name)}</span>
-            </motion.div>
-          ) : (
-            <motion.img
-              src={avatarSrc}
-              alt={`${name}'s Minecraft avatar`}
-              className="profile-slide__avatar"
-              onError={handleImageError}
-              variants={AVATAR_SLIDE_VARIANTS}
-              initial="hidden"
-              animate="visible"
-            />
-          )}
+        {/* Right side: Full-body / avatar image with slide-in animation */}
+        <div className="profile-slide__image-container">
+          {renderImage()}
         </div>
       </div>
     </div>

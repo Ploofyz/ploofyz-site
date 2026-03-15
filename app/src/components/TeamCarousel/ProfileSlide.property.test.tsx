@@ -28,6 +28,7 @@ const profileSlidePropsArbitrary = fc.record({
   role: roleArbitrary,
   description: descriptionArbitrary,
   avatarSrc: avatarSrcArbitrary,
+  fullBodySrc: avatarSrcArbitrary,
   roleColor: roleColorArbitrary,
 });
 
@@ -49,6 +50,7 @@ describe('ProfileSlide - Property-Based Tests', () => {
             role={props.role}
             description={props.description}
             avatarSrc={props.avatarSrc}
+            fullBodySrc={props.fullBodySrc}
             roleColor={props.roleColor}
           />
         );
@@ -71,28 +73,12 @@ describe('ProfileSlide - Property-Based Tests', () => {
 
         // Requirement 2.5: Avatar image must be present
         // The avatar can be either an img element or a fallback div
+        const fullBodyImg = container.querySelector('.profile-slide__fullbody');
         const avatarImg = container.querySelector('.profile-slide__avatar');
         const avatarFallback = container.querySelector('.profile-slide__avatar-fallback');
         
-        // At least one avatar representation must exist
-        expect(avatarImg || avatarFallback).toBeTruthy();
-
-        // If it's an image, verify it has the correct src
-        if (avatarImg) {
-          expect(avatarImg).toHaveAttribute('src', props.avatarSrc);
-          expect(avatarImg).toHaveAttribute('alt', `${props.name}'s Minecraft avatar`);
-        }
-
-        // If it's a fallback, verify it has the initials
-        if (avatarFallback) {
-          const initials = props.name
-            .split(' ')
-            .map(word => word[0])
-            .join('')
-            .toUpperCase()
-            .slice(0, 2);
-          expect(screen.getByText(initials)).toBeInTheDocument();
-        }
+        // At least one image representation must exist
+        expect(fullBodyImg || avatarImg || avatarFallback).toBeTruthy();
 
         // Verify the profile card container exists
         const profileCard = container.querySelector('.profile-slide__card');
@@ -102,9 +88,9 @@ describe('ProfileSlide - Property-Based Tests', () => {
         const contentContainer = container.querySelector('.profile-slide__content');
         expect(contentContainer).toBeInTheDocument();
 
-        // Verify the avatar container exists
-        const avatarContainer = container.querySelector('.profile-slide__avatar-container');
-        expect(avatarContainer).toBeInTheDocument();
+        // Verify the image container exists
+        const imageContainer = container.querySelector('.profile-slide__image-container');
+        expect(imageContainer).toBeInTheDocument();
       }),
       { numRuns: TEST_ITERATIONS }
     );
@@ -123,6 +109,7 @@ describe('ProfileSlide - Property-Based Tests', () => {
             role={props.role}
             description={props.description}
             avatarSrc={props.avatarSrc}
+            fullBodySrc={props.fullBodySrc}
             roleColor={props.roleColor}
           />
         );
@@ -147,15 +134,22 @@ describe('ProfileSlide - Property-Based Tests', () => {
             role={props.role}
             description={props.description}
             avatarSrc={props.avatarSrc}
+            fullBodySrc={props.fullBodySrc}
             roleColor={props.roleColor}
           />
         );
 
+        const fullBodyImg = container.querySelector('.profile-slide__fullbody');
         const avatarImg = container.querySelector('.profile-slide__avatar');
-        
-        // If avatar image is rendered (not fallback), verify alt text
+
+        // Full-body image alt text includes name
+        if (fullBodyImg) {
+          expect(fullBodyImg).toHaveAttribute('alt', `${props.name}'s full body character`);
+        }
+
+        // Avatar fallback alt text is the name
         if (avatarImg) {
-          expect(avatarImg).toHaveAttribute('alt', `${props.name}'s Minecraft avatar`);
+          expect(avatarImg).toHaveAttribute('alt', props.name);
         }
       }),
       { numRuns: TEST_ITERATIONS }

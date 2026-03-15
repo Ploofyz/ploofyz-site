@@ -1,0 +1,115 @@
+# Implementation Plan
+
+- [x] 1. Write bug condition exploration test
+  - **Property 1: Fault Condition** - Hero Logo Display and Navigation Layout
+  - **CRITICAL**: This test MUST FAIL on unfixed code - failure confirms the bug exists
+  - **DO NOT attempt to fix the test or the code when it fails**
+  - **NOTE**: This test encodes the expected behavior - it will validate the fix when it passes after implementation
+  - **GOAL**: Surface counterexamples that demonstrate the bugs exist
+  - **Scoped PBT Approach**: Scope the property to concrete failing cases: home page render with missing logo, navigation render with vertical social icons, navigation logo with absolute positioning
+  - Test that when home page loads, hero section contains logo element at 200px width (desktop)
+  - Test that when navigation renders, social icons display horizontally with 0.75rem gap
+  - Test that navigation logo does not use absolute positioning
+  - Test that logo has drop-shadow filter and responsive sizing on mobile (130px width)
+  - Run test on UNFIXED code
+  - **EXPECTED OUTCOME**: Test FAILS (this is correct - it proves the bugs exist)
+  - Document counterexamples found: missing logo element in DOM, vertical social icons layout, absolute positioning on nav-logo
+  - Mark task complete when test is written, run, and failure is documented
+  - _Requirements: 1.1, 1.2, 1.3, 1.4, 1.5_
+
+- [x] 2. Write preservation property tests (BEFORE implementing fix)
+  - **Property 2: Preservation** - Existing Functionality
+  - **IMPORTANT**: Follow observation-first methodology
+  - Observe behavior on UNFIXED code for non-buggy inputs (navigation clicks, scrolling, mobile menu, animations, other sections)
+  - Write property-based tests capturing observed behavior patterns from Preservation Requirements
+  - Test navigation scrolled state with backdrop blur continues to work
+  - Test all navigation buttons (Home, Vote, Store, Join, Ranks) continue to navigate correctly
+  - Test social media icon links continue to open correct external URLs
+  - Test mobile menu hamburger button and slide-out menu continue to function
+  - Test hero section video placeholder continues to display
+  - Test server IP box continues to render correctly
+  - Test all page animations and transitions continue to work
+  - Test hover states on interactive elements continue to function
+  - Test other page sections (Team, Ranks, CTA) continue to render correctly
+  - Test responsive breakpoints at 1024px, 640px, and 480px continue to work
+  - Property-based testing generates many test cases for stronger guarantees
+  - Run tests on UNFIXED code
+  - **EXPECTED OUTCOME**: Tests PASS (this confirms baseline behavior to preserve)
+  - Mark task complete when tests are written, run, and passing on unfixed code
+  - _Requirements: 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 3.10_
+
+- [x] 3. Fix for hero layout issues
+
+  - [x] 3.1 Add logo element to hero section in Home.tsx
+    - Import PageStyles.css or ensure hero logo styles are available
+    - Add logo wrapper div in hero-container (above or between video and content sections)
+    - Include img element with src="/ploofyz-logo.png" and appropriate className
+    - Wrap in motion.div for consistent animations with other hero elements
+    - Apply hero-logo-centered class or equivalent styling
+    - _Bug_Condition: isBugCondition(input) where input.page == 'home' AND NOT heroLogoExists(input.dom)_
+    - _Expected_Behavior: heroLogoExists(result.dom) == true AND logoWidth(result.dom, 'desktop') == 200_
+    - _Preservation: All navigation, scrolling, mobile menu, animations, and page sections must remain unchanged_
+    - _Requirements: 2.1, 2.3, 2.4_
+
+  - [x] 3.2 Fix social icons layout in Navigation.css
+    - Add explicit flex-direction: row to .nav-socials class
+    - Verify gap: 0.75rem is maintained
+    - Check for conflicting CSS from parent elements and resolve
+    - Test at mobile breakpoint to ensure horizontal layout with 0.5rem gap
+    - _Bug_Condition: isBugCondition(input) where input.component == 'Navigation' AND socialIconsLayout(input.dom) == 'vertical'_
+    - _Expected_Behavior: socialIconsLayout(result.dom) == 'horizontal' with gap 0.75rem_
+    - _Preservation: Social media icon links must continue to open correct external URLs_
+    - _Requirements: 2.2_
+
+  - [x] 3.3 Remove absolute positioning from navigation logo in Navigation.css
+    - Remove position: absolute, left: 50%, transform: translateX(-50%) from .nav-logo
+    - Adjust .nav-inner layout to accommodate three-column layout (socials, logo, nav-links)
+    - Consider adding flex: 1 to .nav-socials and .nav-links for equal spacing
+    - Use flexbox properties for center alignment instead of absolute positioning
+    - Update responsive styles at max-width: 900px to ensure logo remains visible
+    - Verify mobile menu button doesn't overlap with logo
+    - _Bug_Condition: isBugCondition(input) where input.component == 'Navigation' AND navLogoPositioning(input.css) == 'absolute'_
+    - _Expected_Behavior: navLogoPositioning(result.css) != 'absolute' AND proper flexbox layout_
+    - _Preservation: Navigation scrolled state and all navigation buttons must continue to work_
+    - _Requirements: 2.5_
+
+  - [x] 3.4 Add or update hero logo styles if needed
+    - If not using PageStyles.css, add logo-specific styles to Home.css
+    - Define .hero-logo-wrapper for positioning and layout
+    - Define .hero-logo for image sizing (200px desktop), drop-shadow filter, and hover effects
+    - Include responsive styles: 130px width at max-width: 480px
+    - Ensure logo has appropriate z-index and doesn't interfere with other elements
+    - _Bug_Condition: isBugCondition(input) where heroLogoExists(input.dom) but styling doesn't match design_
+    - _Expected_Behavior: Logo displays with drop-shadow filter, hover effects, and responsive sizing_
+    - _Preservation: All page animations and transitions must continue to work_
+    - _Requirements: 2.1, 2.4_
+
+  - [x] 3.5 Verify bug condition exploration test now passes
+    - **Property 1: Expected Behavior** - Hero Logo Display and Navigation Layout
+    - **IMPORTANT**: Re-run the SAME test from task 1 - do NOT write a new test
+    - The test from task 1 encodes the expected behavior
+    - When this test passes, it confirms the expected behavior is satisfied
+    - Run bug condition exploration test from step 1
+    - Verify hero section contains logo element at correct size
+    - Verify social icons display horizontally with proper gap
+    - Verify navigation logo does not use absolute positioning
+    - Verify logo has drop-shadow filter and responsive sizing
+    - **EXPECTED OUTCOME**: Test PASSES (confirms bugs are fixed)
+    - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5_
+
+  - [x] 3.6 Verify preservation tests still pass
+    - **Property 2: Preservation** - Existing Functionality
+    - **IMPORTANT**: Re-run the SAME tests from task 2 - do NOT write new tests
+    - Run preservation property tests from step 2
+    - Confirm navigation scrolled state still works
+    - Confirm all navigation buttons still navigate correctly
+    - Confirm social media links still open correctly
+    - Confirm mobile menu still functions
+    - Confirm all animations and transitions still work
+    - Confirm other page sections still render correctly
+    - Confirm responsive breakpoints still work
+    - **EXPECTED OUTCOME**: Tests PASS (confirms no regressions)
+    - Confirm all tests still pass after fix (no regressions)
+
+- [x] 4. Checkpoint - Ensure all tests pass
+  - Ensure all tests pass, ask the user if questions arise.

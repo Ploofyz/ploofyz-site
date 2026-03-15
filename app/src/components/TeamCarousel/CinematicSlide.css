@@ -11,7 +11,7 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  transition: opacity var(--fade-duration) ease-in-out;
+  transition: opacity 600ms ease-in-out;
 }
 
 .cinematic-slide__fallback {
@@ -38,7 +38,7 @@
   z-index: 1;
   text-align: center;
   color: #ffffff;
-  padding: var(--spacing-lg);
+  padding: 2rem;
 }
 
 .cinematic-slide__fallback-text h2 {

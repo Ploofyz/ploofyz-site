@@ -135,43 +135,43 @@ This implementation plan converts the meet-the-team-carousel design into a serie
     - **Property 3: Navigation Direction Consistency**
     - **Validates: Requirements 3.3, 3.4**
   
-  - [~] 7.7 Write property test for TeamCarousel
+  - [ ] 7.7 Write property test for TeamCarousel
     - **Property 4: Auto-Rotation Advancement**
     - **Validates: Requirements 4.1**
   
-  - [~] 7.8 Write property test for TeamCarousel
+  - [ ] 7.8 Write property test for TeamCarousel
     - **Property 5: Manual Interaction Timer Reset**
     - **Validates: Requirements 4.2, 4.3, 4.4**
   
-  - [~] 7.9 Write property test for TeamCarousel
+  - [ ] 7.9 Write property test for TeamCarousel
     - **Property 6: Thumbnail Count Matches Slides**
     - **Validates: Requirements 5.1**
   
-  - [~] 7.10 Write property test for TeamCarousel
+  - [ ] 7.10 Write property test for TeamCarousel
     - **Property 8: Thumbnail Navigation Accuracy**
     - **Validates: Requirements 5.3**
   
-  - [~] 7.11 Write property test for TeamCarousel
+  - [ ] 7.11 Write property test for TeamCarousel
     - **Property 10: Touch Event Navigation**
     - **Validates: Requirements 6.4, 6.5**
   
-  - [~] 7.12 Write property test for TeamCarousel
+  - [ ] 7.12 Write property test for TeamCarousel
     - **Property 11: Transition Timing Constraint**
     - **Validates: Requirements 7.1**
   
-  - [~] 7.13 Write property test for TeamCarousel
+  - [ ] 7.13 Write property test for TeamCarousel
     - **Property 14: Keyboard Navigation Support**
     - **Validates: Requirements 8.3**
   
-  - [~] 7.14 Write property test for TeamCarousel
+  - [ ] 7.14 Write property test for TeamCarousel
     - **Property 15: Focus Management**
     - **Validates: Requirements 8.4**
   
-  - [~] 7.15 Write property test for TeamCarousel
+  - [ ] 7.15 Write property test for TeamCarousel
     - **Property 16: Screen Reader Announcements**
     - **Validates: Requirements 8.5**
   
-  - [~] 7.16 Write unit tests for TeamCarousel
+  - [ ] 7.16 Write unit tests for TeamCarousel
     - Test carousel renders with 9 slides
     - Test first slide is active on mount
     - Test navigation arrows are present
@@ -215,7 +215,7 @@ This implementation plan converts the meet-the-team-carousel design into a serie
     - Preserve all other existing sections and their order
     - _Requirements: 1.1, 1.2, 1.3_
   
-  - [~] 10.2 Write integration tests for Home.tsx
+  - [ ] 10.2 Write integration tests for Home.tsx
     - Test team section renders in correct position
     - Test features section is removed
     - Test other sections remain unchanged

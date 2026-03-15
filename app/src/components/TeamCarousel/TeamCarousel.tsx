@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { CinematicSlide } from './CinematicSlide';
 import { ProfileSlide } from './ProfileSlide';
-import { NavigationArrow } from './NavigationArrow';
 import { ThumbnailIndicator } from './ThumbnailIndicator';
 import { TEAM_SLIDES } from './constants';
 import type { CarouselSlide } from './types';
@@ -12,7 +11,7 @@ export const TeamCarousel: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   
   // Auto-rotation timer ref
-  const autoplayTimerRef = useRef<number | null>(null);
+  const autoplayTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const slideCount = TEAM_SLIDES.length;
 
@@ -93,19 +92,6 @@ export const TeamCarousel: React.FC = () => {
   }, []);
 
   /**
-   * Handle navigation arrow clicks
-   */
-  const handlePrevClick = () => {
-    scrollPrev();
-    resetAutoplay();
-  };
-
-  const handleNextClick = () => {
-    scrollNext();
-    resetAutoplay();
-  };
-
-  /**
    * Handle thumbnail clicks
    */
   const handleThumbnailClick = (index: number) => {
@@ -114,13 +100,15 @@ export const TeamCarousel: React.FC = () => {
   };
 
   /**
-   * Get thumbnail image source for a slide
+   * Get initials from a full name (up to 2 characters)
    */
-  const getThumbnailSrc = (slide: CarouselSlide): string => {
-    if (slide.type === 'cinematic') {
-      return slide.imageSrc;
-    }
-    return slide.member.thumbnailSrc; // Use thumbnailSrc for head-only images
+  const getInitials = (name: string): string => {
+    return name
+      .split(' ')
+      .map((word) => word.charAt(0))
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
   };
 
   /**
@@ -134,18 +122,7 @@ export const TeamCarousel: React.FC = () => {
   };
 
   return (
-    <section 
-      className="team-carousel"
-      role="region"
-      aria-labelledby="team-carousel-title"
-      aria-roledescription="carousel"
-    >
-      {/* Header Section */}
-      <div className="team-carousel__header">
-        <h2 id="team-carousel-title" className="team-carousel__title">Meet the Team</h2>
-        <p className="team-carousel__subtitle">Appreciation to the people who made Ploofyz a reality.</p>
-      </div>
-
+    <div className="team-carousel">
       {/* Carousel viewport with fade transition */}
       <div className="carousel-viewport">
         <div className="carousel-container">
@@ -156,9 +133,6 @@ export const TeamCarousel: React.FC = () => {
                 index === selectedIndex ? 'carousel-slide--active' : ''
               }`}
               aria-hidden={index !== selectedIndex}
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`Slide ${index + 1} of ${slideCount}`}
             >
               {slide.type === 'cinematic' ? (
                 <CinematicSlide
@@ -171,38 +145,26 @@ export const TeamCarousel: React.FC = () => {
                   role={slide.member.role}
                   description={slide.member.description}
                   avatarSrc={slide.member.avatarSrc}
+                  fullBodySrc={slide.member.fullBodySrc}
                   roleColor={slide.member.roleColor}
+                  isActive={index === selectedIndex}
                 />
               )}
             </div>
           ))}
         </div>
 
-        {/* Navigation arrows */}
-        <NavigationArrow
-          direction="prev"
-          onClick={handlePrevClick}
-          disabled={false}
-          ariaLabel="Previous slide"
-        />
-        <NavigationArrow
-          direction="next"
-          onClick={handleNextClick}
-          disabled={false}
-          ariaLabel="Next slide"
-        />
+
       </div>
 
       {/* Thumbnail indicators */}
-      <div 
-        className="carousel-thumbnails"
-        role="tablist"
-        aria-label="Slide navigation"
-      >
+      <div className="carousel-thumbnails">
         {TEAM_SLIDES.map((slide, index) => (
           <ThumbnailIndicator
             key={index}
-            imageSrc={getThumbnailSrc(slide)}
+            avatarSrc={slide.type === 'cinematic' ? '/images/team/ploofyz.png' : slide.member.avatarSrc}
+            initials={slide.type === 'cinematic' ? '' : getInitials(slide.member.name)}
+            roleColor={slide.type === 'cinematic' ? '#888888' : slide.member.roleColor}
             alt={getThumbnailAlt(slide)}
             isActive={index === selectedIndex}
             onClick={() => handleThumbnailClick(index)}
@@ -224,7 +186,7 @@ export const TeamCarousel: React.FC = () => {
               ? TEAM_SLIDES[selectedIndex].member.name 
               : 'slide'}, slide ${selectedIndex + 1} of ${slideCount}`}
       </div>
-    </section>
+    </div>
   );
 };
 
