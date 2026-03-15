@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion, useInView, type Variants } from 'framer-motion';
 import { ExternalLink, Gift, Star, Trophy, Sparkles, Crown, Gem } from 'lucide-react';
+import './Vote.css';
 
 // Animation variants
 const fadeInUp: Variants = {
