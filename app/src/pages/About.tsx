@@ -149,6 +149,8 @@ export default function About() {
     <div className="about-page">
       {/* Hero Section */}
       <section className="about-hero">
+        <div className="page-hero-bg" />
+        <div className="page-hero-overlay" />
         <motion.div
           className="about-hero-content"
           initial={{ opacity: 0, y: 40 }}

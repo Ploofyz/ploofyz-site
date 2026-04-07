@@ -207,6 +207,8 @@ export default function Store() {
     <div className="store-page">
       {/* Hero Section */}
       <section className="store-hero-section">
+        <div className="page-hero-bg" />
+        <div className="page-hero-overlay" />
         <motion.div
           className="store-hero-content"
           initial={{ opacity: 0, y: 40 }}

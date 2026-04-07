@@ -4,6 +4,9 @@ import { ArrowRight, Zap, ChevronDown } from 'lucide-react';
 import type { Page } from '../App';
 import { TeamCarousel } from '../components/TeamCarousel/TeamCarousel';
 
+// Change your video link here! Make sure it's the "embed" URL format from YouTube
+const YOUTUBE_VIDEO_URL = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+
 interface HomeProps {
   onNavigate: (page: Page) => void;
 }
@@ -146,14 +149,13 @@ function useScrollRevealEffect() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsInView(true);
-            // Smooth animation to full scale
             let startTime: number | null = null;
             const duration = 600;
             
             const animate = (timestamp: number) => {
               if (!startTime) startTime = timestamp;
               const progress = Math.min((timestamp - startTime) / duration, 1);
-              const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+              const eased = 1 - Math.pow(1 - progress, 3);
               
               setScale(0.9 + (0.1 * eased));
               setOpacity(eased);
@@ -205,90 +207,97 @@ function ScrollScaleSection({ children, className = '' }: { children: React.Reac
 }
 
 export default function Home({ onNavigate }: HomeProps) {
-  // Scroll-based transforms for hero
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, -100]);
-  const heroScaleTransform = useTransform(scrollY, [0, 500], [1, 0.85]);
   const heroOpacityTransform = useTransform(scrollY, [0, 400], [1, 0]);
 
   return (
     <div className="home-page">
-      {/* Hero Section with Scroll Scale Effect */}
+      {/* Hero Section */}
       <section className="hero-section">
-        <motion.div
-          className="hero-content"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] as const }}
-          style={{
-            y: heroY,
-            scale: heroScaleTransform,
-            opacity: heroOpacityTransform,
-          }}
+        <div className="hero-background" />
+        
+        <motion.div 
+          className="hero-container"
+          style={{ y: heroY, opacity: heroOpacityTransform }}
         >
-          <motion.div
-            className="hero-badge"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          {/* Top Logo */}
+          <motion.div 
+            className="hero-logo-wrapper"
+            initial={{ opacity: 0, y: -80 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <Zap size={14} />
-            <span>Now Available in SEA</span>
+            {/* Inline styles added to force the logo to be big like in your image */}
+            <img 
+              src="/ploofyz-logo.png" 
+              alt="Ploofyz" 
+              className="hero-logo-centered" 
+              style={{ width: '100%', maxWidth: '350px' }} 
+            />
           </motion.div>
 
-          <motion.h1
-            className="hero-title heading-xl gradient-text"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            A Minecraft Adventure
-            <br />
-            Told in Chapter
-          </motion.h1>
-
-          <motion.p
-            className="hero-subtitle body-lg"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            A story through quests while keeping 
-            survival Minecraft experience.
-          </motion.p>
-
-          <motion.div
-            className="hero-buttons"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            <button 
-              className="btn-primary"
-              onClick={() => onNavigate('store')}
+          {/* Split Content (Video Left, Text Right) */}
+          <div className="hero-content-wrapper">
+          
+          
+            {/* Left Side - Video and Buttons */}
+            <motion.div 
+              className="hero-video-section"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Shop Now
-              <ArrowRight size={18} />
-            </button>
-            <button 
-              className="btn-secondary"
-              onClick={() => onNavigate('about')}
-            >
-              Learn More
-            </button>
-          </motion.div>
-        </motion.div>
+              <div className="video-wrapper">
+<iframe
+  src={YOUTUBE_VIDEO_URL}
+  title="Ploofyz Minecraft Trailer"
+  loading="lazy"
+  frameBorder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowFullScreen
+  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
+></iframe>
+ </div>
+ {/* Discord Button and IP under Video */}
+ <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginTop: '8px' }}>
+ <a 
+  href="https://discord.gg/3uUM25NWWG" 
+  target="_blank" 
+  rel="noopener noreferrer" 
+  className="discord-btn"
+  aria-label="Join our Discord server"
+  style={{ padding: '12px 24px', fontSize: '15px' }}
+>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                  </svg>
+                  Join Our Discord
+                </a>
+                <h3 style={{ color: 'white', margin: 0, fontSize: '20px', fontWeight: 'bold' }}>play.ploofyz.com</h3>
+              </div>
+            </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="scroll-indicator"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1 }}
-          style={{ opacity: heroOpacityTransform }}
-        >
-          <span>Scroll to explore</span>
-          <ChevronDown size={20} />
+            {/* Right Side - Typography */}
+            <motion.div 
+              className="hero-content-section"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              style={{ alignItems: 'flex-start', textAlign: 'left' }}
+            >
+              <h2 className="hero-title" style={{ fontSize: '3.5rem', lineHeight: '1.2' }}>
+                <span style={{ color: '#a78bfa' }}>A Minecraft</span><br />
+                <span style={{ color: '#8b5cf6' }}>Adventure</span><br />
+                <span style={{ color: '#6366f1' }}>Told in</span><br />
+                <span style={{ color: '#3b82f6' }}>Chapters.</span>
+              </h2>
+              <p className="hero-subtitle" style={{ maxWidth: '400px' }}>
+                A story through quests while keeping the survival Minecraft experience.
+              </p>
+            </motion.div>
+
+          </div>
         </motion.div>
       </section>
 
@@ -382,7 +391,7 @@ export default function Home({ onNavigate }: HomeProps) {
           <AnimatedSection>
             <motion.div className="cta-content" variants={fadeInUp}>
               <h2 className="cta-title heading-md">
-                Ready to Experience Plooyz?
+                Ready to Experience Ploofyz?
               </h2>
               <button 
                 className="discord-btn"

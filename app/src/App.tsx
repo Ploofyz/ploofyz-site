@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
-import About from './pages/About';
+// import About from './pages/About';
 import Store from './pages/Store';
 import Join from './pages/Join';
 import ServerRanks from './pages/ServerRanks';
@@ -123,7 +123,7 @@ function App() {
             className="page-container"
           >
             {currentPage === 'home' && <Home onNavigate={navigateTo} />}
-            {currentPage === 'about' && <About />}
+            {/*currentPage === 'about' && <About />} */}
             {currentPage === 'store' && <Store />}
             {currentPage === 'join' && <Join />}
             {currentPage === 'ranks' && <ServerRanks />}

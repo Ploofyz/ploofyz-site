@@ -231,6 +231,8 @@ export default function ServerRanks() {
     <div className="ranks-page">
       {/* Hero Section */}
       <section className="ranks-hero-section">
+        <div className="page-hero-bg" />
+        <div className="page-hero-overlay" />
         <motion.div
           className="ranks-hero-content"
           initial={{ opacity: 0, y: 40 }}
