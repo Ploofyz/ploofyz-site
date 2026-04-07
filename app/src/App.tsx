@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
-import About from './pages/About';
+// import About from './pages/About';
 import Store from './pages/Store';
 import Join from './pages/Join';
 import ServerRanks from './pages/ServerRanks';
+import Vote from './pages/Vote';
 import './App.css';
 
-export type Page = 'home' | 'about' | 'store' | 'join' | 'ranks';
+export type Page = 'home' | 'about' | 'store' | 'join' | 'ranks' | 'vote';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -29,7 +30,7 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1); // Remove the '#'
-      if (hash && ['home', 'about', 'store', 'join', 'ranks'].includes(hash)) {
+      if (hash && ['home', 'about', 'store', 'join', 'ranks', 'vote'].includes(hash)) {
         setCurrentPage(hash as Page);
       }
     };
@@ -122,10 +123,11 @@ function App() {
             className="page-container"
           >
             {currentPage === 'home' && <Home onNavigate={navigateTo} />}
-            {currentPage === 'about' && <About />}
+            {/*currentPage === 'about' && <About />} */}
             {currentPage === 'store' && <Store />}
             {currentPage === 'join' && <Join />}
             {currentPage === 'ranks' && <ServerRanks />}
+            {currentPage === 'vote' && <Vote />}
           </motion.div>
         </AnimatePresence>
       </main>

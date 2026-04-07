@@ -17,8 +17,8 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 12px;
-  background-color: #1a1a1a;
+  border-radius: 0px;
+  background-color: #00000000;
   min-height: 500px;
 }
 
@@ -38,7 +38,7 @@
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 600ms ease-in-out;
+  transition: opacity 800ms ease-in-out;
   pointer-events: none;
   z-index: 1;
 }
@@ -127,43 +127,30 @@
   }
 }
 
+/* Update Mobile Styles */
+@media (max-width: 767px) {
+  .team-carousel {
+    padding: 1rem 0.5rem;
+  }
+
+  .carousel-viewport {
+    min-height: 550px; /* Increased from 400px */
+  }
+
+  .carousel-container {
+    min-height: 550px; /* Increased from 400px */
+  }
+  /* ... keep the rest ... */
+}
+
+/* Update Tablet Styles */
 @media (min-width: 768px) and (max-width: 1024px) {
   .carousel-viewport {
-    min-height: 450px;
+    min-height: 600px; /* Increased from 450px */
   }
 
   .carousel-container {
-    min-height: 450px;
+    min-height: 600px; /* Increased from 450px */
   }
-
-  .carousel-thumbnails {
-    padding: 0.75rem 0.5rem;
-  }
-
-  /* Adjust arrow positioning for tablet */
-  .carousel-viewport .navigation-arrow {
-    bottom: 1.5rem;
-    transform: translateY(-6px);
-  }
-  
-  .carousel-viewport .navigation-arrow--prev {
-    left: 50%;
-    margin-left: -260px;
-  }
-
-  .carousel-viewport .navigation-arrow--next {
-    right: 50%;
-    margin-right: -260px;
-  }
+  /* ... keep the rest ... */
 }
-
-@media (min-width: 1025px) {
-  .carousel-viewport {
-    min-height: 550px;
-  }
-
-  .carousel-container {
-    min-height: 550px;
-  }
-}
-

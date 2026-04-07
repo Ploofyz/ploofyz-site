@@ -51,7 +51,7 @@ const ranksData = [
     icon: <Shield size={24} />,
     color: '#7FB86D',
     bgColor: 'rgba(127, 184, 109, 0.15)',
-    price: 'MYR 18',
+    price: 'MYR 19',
     duration: '14 Days',
     durationType: 'temp',
     perks: [
@@ -72,7 +72,7 @@ const ranksData = [
     icon: <Zap size={24} />,
     color: '#f3de1cff',
     bgColor: 'rgba(245, 158, 11, 0.15)',
-    price: 'MYR 38',
+    price: 'MYR 39',
     duration: '14 Days',
     durationType: 'temp',
     perks: [
@@ -93,7 +93,7 @@ const ranksData = [
     icon: <Crown size={24} />,
     color: '#F97316',
     bgColor: 'rgba(249, 115, 22, 0.15)',
-    price: 'MYR 72',
+    price: 'MYR 71',
     duration: '1 Month',
     durationType: 'perm',
     perks: [
@@ -114,7 +114,7 @@ const ranksData = [
     icon: <Sparkles size={24} />,
     color: '#EF4444',
     bgColor: 'rgba(239, 68, 68, 0.15)',
-    price: 'MYR 95',
+    price: 'MYR 90',
     duration: '1 Month',
     durationType: 'perm',
     perks: [
@@ -231,6 +231,8 @@ export default function ServerRanks() {
     <div className="ranks-page">
       {/* Hero Section */}
       <section className="ranks-hero-section">
+        <div className="page-hero-bg" />
+        <div className="page-hero-overlay" />
         <motion.div
           className="ranks-hero-content"
           initial={{ opacity: 0, y: 40 }}

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { ShoppingCart, ExternalLink, BookOpen, Gift, Map, MessageSquare } from 'lucide-react';
 
 export default function Footer() {
@@ -35,13 +34,13 @@ export default function Footer() {
             </h3>
             <ul className="footer-links">
               <li>
-                <a href="#/ranks" className="footer-link">
+                <a href="#ranks" className="footer-link">
                   <BookOpen size={16} />
                   <span>Server Ranks</span>
                 </a>
               </li>
               <li>
-                <a href="#/vote" className="footer-link">
+                <a href="#vote" className="footer-link">
                   <Gift size={16} />
                   <span>Vote Rewards</span>
                 </a>

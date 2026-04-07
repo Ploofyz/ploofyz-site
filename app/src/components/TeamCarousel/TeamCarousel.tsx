@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { CinematicSlide } from './CinematicSlide';
 import { ProfileSlide } from './ProfileSlide';
 import { ThumbnailIndicator } from './ThumbnailIndicator';
@@ -18,78 +18,70 @@ export const TeamCarousel: React.FC = () => {
   /**
    * Navigate to the next slide with wrap-around logic
    */
-  const scrollNext = () => {
+  const scrollNext = useCallback(() => {
     setSelectedIndex((prevIndex) => {
       const nextIndex = prevIndex + 1;
       return nextIndex >= slideCount ? 0 : nextIndex;
     });
-  };
+  }, [slideCount]);
 
   /**
    * Navigate to the previous slide with wrap-around logic
    */
-  const scrollPrev = () => {
+  const scrollPrev = useCallback(() => {
     setSelectedIndex((prevIndex) => {
       const prevIndexCalc = prevIndex - 1;
       return prevIndexCalc < 0 ? slideCount - 1 : prevIndexCalc;
     });
-  };
+  }, [slideCount]);
 
   /**
    * Navigate to a specific slide index
    */
   const scrollTo = (index: number) => {
     if (index < 0 || index >= slideCount) return;
-    if (index === selectedIndex) return;
-    
     setSelectedIndex(index);
   };
 
   /**
    * Reset the auto-rotation timer
    */
-  const resetAutoplay = () => {
+  const resetAutoplay = useCallback(() => {
     if (autoplayTimerRef.current) {
       clearInterval(autoplayTimerRef.current);
     }
-    
     autoplayTimerRef.current = setInterval(() => {
       scrollNext();
     }, 4000);
-  };
+  }, [scrollNext]);
 
-  /**
-   * Handle keyboard navigation
-   */
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === 'ArrowLeft') {
-      scrollPrev();
-      resetAutoplay();
-    } else if (e.key === 'ArrowRight') {
-      scrollNext();
-      resetAutoplay();
-    }
-  };
-
-  // Set up auto-rotation timer
+  // Set up auto-rotation timer (only on mount, not on every slide change)
   useEffect(() => {
     resetAutoplay();
-    
     return () => {
       if (autoplayTimerRef.current) {
         clearInterval(autoplayTimerRef.current);
       }
     };
-  }, [selectedIndex]);
+  }, [resetAutoplay]);
 
-  // Set up keyboard navigation
+  // Set up keyboard navigation with stable references
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        scrollPrev();
+        resetAutoplay();
+      } else if (e.key === 'ArrowRight') {
+        scrollNext();
+        resetAutoplay();
+      }
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [scrollNext, scrollPrev, resetAutoplay]);
 
   /**
    * Handle thumbnail clicks
@@ -182,9 +174,11 @@ export const TeamCarousel: React.FC = () => {
       >
         {selectedIndex === 0
           ? 'Showing team photo'
-          : `Showing ${TEAM_SLIDES[selectedIndex].type === 'profile' 
-              ? TEAM_SLIDES[selectedIndex].member.name 
-              : 'slide'}, slide ${selectedIndex + 1} of ${slideCount}`}
+          : (() => {
+              const slide = TEAM_SLIDES[selectedIndex];
+              const name = slide.type === 'profile' ? slide.member.name : 'slide';
+              return `Showing ${name}, slide ${selectedIndex + 1} of ${slideCount}`;
+            })()}
       </div>
     </div>
   );

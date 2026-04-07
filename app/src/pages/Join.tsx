@@ -116,6 +116,8 @@ export default function Join() {
     <div className="join-page">
       {/* Hero Section */}
       <section className="join-hero-section">
+        <div className="page-hero-bg" />
+        <div className="page-hero-overlay" />
         <motion.div
           className="join-hero-content"
           initial={{ opacity: 0, y: 40 }}
