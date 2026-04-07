@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, useInView, useAnimation, useScroll, useTransform, type Variants } from 'framer-motion';
-import { ArrowRight, Zap, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import type { Page } from '../App';
 import { TeamCarousel } from '../components/TeamCarousel/TeamCarousel';
 
