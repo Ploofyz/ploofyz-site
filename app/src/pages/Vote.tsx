@@ -23,12 +23,12 @@ const staggerContainer: Variants = {
 
 // Vote links
 const voteLinks = [
-  { id: 1, label: 'Vote #1', url: 'https://minecraftservers.org/user', icon: <Star size={22} />, color: 'from-violet-500 to-purple-600' },
-  { id: 2, label: 'Vote #2', url: 'https://minecraftservers.org/server/684325', icon: <Trophy size={22} />, color: 'from-purple-500 to-pink-600' },
-  { id: 3, label: 'Vote #3', url: 'https://topg.org/minecraft-servers/server-679740', icon: <Sparkles size={22} />, color: 'from-pink-500 to-rose-600' },
-  { id: 4, label: 'Vote #4', url: 'https://minecraft-mp.com/servers/manage/', icon: <Crown size={22} />, color: 'from-rose-500 to-orange-600' },
-  { id: 5, label: 'Vote #5', url: 'https://minecraft-serverlist.com/dashboard/servers/4405/edit', icon: <Gem size={22} />, color: 'from-orange-500 to-amber-600' },
-  { id: 6, label: 'Vote #6', url: 'https://www.minerank.com/ploofyz', icon: <Gift size={22} />, color: 'from-amber-500 to-yellow-600' },
+  { id: 1, label: 'Vote #1', url: 'https://minecraft-serverlist.com/server/4405/vote', icon: <Star size={22} />, color: 'from-violet-500 to-purple-600' },
+  { id: 2, label: 'Vote #2', url: 'https://best-minecraft-servers.co/server-ploofyz.32529/vote', icon: <Trophy size={22} />, color: 'from-purple-500 to-pink-600' },
+  { id: 3, label: 'Vote #3', url: 'https://topminecraftservers.org/server/43036', icon: <Sparkles size={22} />, color: 'from-pink-500 to-rose-600' },
+  { id: 4, label: 'Vote #4', url: 'https://minecraftservers.org/vote/685084', icon: <Crown size={22} />, color: 'from-rose-500 to-orange-600' },
+  { id: 5, label: 'Vote #5', url: 'https://minecraft-mp.com/server/354657/vote/?error=2&time=1773891818', icon: <Gem size={22} />, color: 'from-orange-500 to-amber-600' },
+  { id: 6, label: 'Vote #6', url: 'https://www.minerank.com/ploofyz/vote#vote-now', icon: <Gift size={22} />, color: 'from-amber-500 to-yellow-600' },
 ];
 
 // Scroll reveal hook
