@@ -66,6 +66,13 @@ const searchableContent: Record<Page, { title: string; content: string; section:
     { title: 'Nexus Rank', content: 'Permanent rank with powerful utilities', section: 'Ranks' },
     { title: 'Phantom Rank', content: 'Top-tier rank with maximum perks', section: 'Ranks' },
   ],
+  'skull-race': [
+    { title: 'Skull Race', content: 'Weekly event for individual and team categories', section: 'Hero' },
+    { title: 'Weekly Prize', content: '1x Wither Skull awarded to top individual and team', section: 'Prize' },
+    { title: 'Individual', content: 'Based on solo player balance, win once per month', section: 'Rules' },
+    { title: 'Team', content: 'Based on BetterTeams balance, win up to 2 times per month', section: 'Rules' },
+  ],
+  admin: [],
 };
 
 export default function Navigation({ currentPage, onNavigate }: NavigationProps) {
