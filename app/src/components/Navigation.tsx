@@ -17,6 +17,7 @@ const navItems: { label: string; page: Page }[] = [
   { label: 'Join', page: 'join' },
   { label: 'Ranks', page: 'ranks' },
   { label: 'Vote', page: 'vote' },
+  { label: 'Skull Race', page: 'skull-race' },
 ];
 
 // Searchable content for each page
