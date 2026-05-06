@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { supabase } from './lib/supabase';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import Navigation from './components/Navigation';
 import Home from './pages/Home';
@@ -7,16 +9,35 @@ import Store from './pages/Store';
 import Join from './pages/Join';
 import ServerRanks from './pages/ServerRanks';
 import Vote from './pages/Vote';
+import SkullRace from './pages/SkullRace';
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminDashboard from './pages/admin/AdminDashboard';
 import './App.css';
 
-export type Page = 'home' | 'about' | 'store' | 'join' | 'ranks' | 'vote';
+export type Page = 'home' | 'about' | 'store' | 'join' | 'ranks' | 'vote' | 'skull-race' | 'admin';
 
 function App() {
+  const location = useLocation();
+  const isAdminRoute = location.pathname === '/admin';
   const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [authLoading, setAuthLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial loading
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAdminLoggedIn(!!session);
+      setAuthLoading(false);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAdminLoggedIn(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1200);
@@ -29,16 +50,14 @@ function App() {
   // Handle hash-based navigation
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.slice(1); // Remove the '#'
-      if (hash && ['home', 'about', 'store', 'join', 'ranks', 'vote'].includes(hash)) {
+      const hash = window.location.hash.slice(1);
+      if (hash && ['home', 'about', 'store', 'join', 'ranks', 'vote', 'skull-race', 'admin'].includes(hash)) {
         setCurrentPage(hash as Page);
       }
     };
 
-    // Check hash on mount
     handleHashChange();
 
-    // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange);
 
     return () => {
@@ -77,6 +96,15 @@ function App() {
   };
 
   // Loading screen
+  if (isAdminRoute && authLoading) return null;
+
+  if (isAdminRoute) {
+    if (isAdminLoggedIn) {
+      return <AdminDashboard onLogout={() => { setIsAdminLoggedIn(false); }} />;
+    }
+    return <AdminLogin onLogin={() => setIsAdminLoggedIn(true)} />;
+  }
+
   if (isLoading) {
     return (
       <motion.div
@@ -128,6 +156,7 @@ function App() {
             {currentPage === 'join' && <Join />}
             {currentPage === 'ranks' && <ServerRanks />}
             {currentPage === 'vote' && <Vote />}
+            {currentPage === 'skull-race' && <SkullRace />}
           </motion.div>
         </AnimatePresence>
       </main>
