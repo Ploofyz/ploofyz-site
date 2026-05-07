@@ -5,7 +5,7 @@ import type { Page } from '../App';
 import { TeamCarousel } from '../components/TeamCarousel/TeamCarousel';
 
 // Change your video link here! Make sure it's the "embed" URL format from YouTube
-const YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch?v=mbJ4gtZXrLQ";
+const YOUTUBE_VIDEO_URL = "https://www.youtube.com/embed/mbJ4gtZXrLQ";
 
 interface HomeProps {
   onNavigate: (page: Page) => void;
