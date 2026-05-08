@@ -104,13 +104,24 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
               <p className="text-sm" style={{ color: 'rgba(255,255,255,0.35)' }}>Admin Dashboard</p>
             </div>
           </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 text-xs px-3 py-2 rounded-lg"
-            style={{ color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
-          >
-            <LogOut size={13} /> Logout
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href="https://mc.bloom.host/server/a05a4bc5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-xs px-3 py-2 rounded-lg"
+              style={{ color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              Server Panel
+            </a>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 text-xs px-3 py-2 rounded-lg"
+              style={{ color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
+            >
+              <LogOut size={13} /> Logout
+            </button>
+          </div>
         </div>
         {/* dashboard */}
         <div className="grid grid-cols-3 gap-3 mb-6">
