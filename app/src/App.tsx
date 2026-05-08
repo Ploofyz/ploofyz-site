@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from './lib/supabase';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import Navigation from './components/Navigation';
@@ -18,8 +18,8 @@ export type Page = 'home' | 'about' | 'store' | 'join' | 'ranks' | 'vote' | 'sku
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isAdminRoute = location.pathname === '/admin';
-  const [currentPage, setCurrentPage] = useState<Page>('home');
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
@@ -47,27 +47,8 @@ function App() {
     };
   }, []);
 
-  // Handle hash-based navigation
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1);
-      if (hash && ['home', 'about', 'store', 'join', 'ranks', 'vote', 'skull-race', 'admin'].includes(hash)) {
-        setCurrentPage(hash as Page);
-      }
-    };
-
-    handleHashChange();
-
-    window.addEventListener('hashchange', handleHashChange);
-
-    return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-    };
-  }, []);
-
-  // Handle navigation
   const navigateTo = (page: Page) => {
-    setCurrentPage(page);
+    navigate(page === 'home' ? '/' : `/${page}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -131,6 +112,8 @@ function App() {
     );
   }
 
+  const currentPage = (location.pathname === '/' ? 'home' : location.pathname.slice(1)) as Page;
+
   return (
     <div className="app">
       {/* Background Glow Effect */}
@@ -143,20 +126,22 @@ function App() {
       <main className="main-content">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentPage}
+            key={location.pathname}
             variants={pageVariants}
             initial="initial"
             animate="animate"
             exit="exit"
             className="page-container"
           >
-            {currentPage === 'home' && <Home onNavigate={navigateTo} />}
-            {/*currentPage === 'about' && <About />} */}
-            {currentPage === 'store' && <Store />}
-            {currentPage === 'join' && <Join />}
-            {currentPage === 'ranks' && <ServerRanks />}
-            {currentPage === 'vote' && <Vote />}
-            {currentPage === 'skull-race' && <SkullRace />}
+            <Routes>
+              <Route path="/" element={<Home onNavigate={navigateTo} />} />
+              <Route path="/store" element={<Store />} />
+              {/*currentPage === 'about' && <About />} */}
+              <Route path="/join" element={<Join />} />
+              <Route path="/ranks" element={<ServerRanks />} />
+              <Route path="/vote" element={<Vote />} />
+              <Route path="/skull-race" element={<SkullRace />} />
+            </Routes>
           </motion.div>
         </AnimatePresence>
       </main>
