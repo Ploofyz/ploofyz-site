@@ -17,7 +17,7 @@ interface EventFormProps {
 
 //date calculation
 const IND_BASE_MS = Date.UTC(2026, 4, 9); // 9 may
-const TEAM_BASE_MS = Date.UTC(2026, 4, 16); // 16 may
+const TEAM_BASE_MS = Date.UTC(2026, 4, 9); // 9 may
 const fmtDate = (date: string) => new Date(date + 'T12:00:00').toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' });
 
 export default function EventForm({ event, onSave, onClose, existingEvents }: EventFormProps) {
