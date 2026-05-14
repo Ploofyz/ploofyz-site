@@ -282,7 +282,7 @@ export default function ServerRanks() {
                       <th style={{ textAlign: 'left' }}>Rank</th>
                       <th style={{ textAlign: 'left' }}>Perks</th>
                       <th style={{ textAlign: 'center' }}>Duration</th>
-                      <th style={{ textAlign: 'center' }}>Price</th>
+                      {/* <th style={{ textAlign: 'center' }}>Price</th> */}
                       <th></th>
                     </tr>
                   </thead>
@@ -326,9 +326,9 @@ export default function ServerRanks() {
                             {rank.duration}
                           </span>
                         </td>
-                        <td>
+                        {/* <td>
                           <span className="rank-price">{rank.price}</span>
-                        </td>
+                        </td> */}
                         <td>
                           <button className="rank-buy-btn">Buy</button>
                         </td>
@@ -362,7 +362,7 @@ export default function ServerRanks() {
                           {rank.duration}
                         </span>
                       </div>
-                      <span className="rank-mobile-price">{rank.price}</span>
+                      {/* <span className="rank-mobile-price">{rank.price}</span> */}
                     </div>
                     <div className="rank-mobile-perks">
                       {rank.perks.filter(p => p.active).map((perk) => (
