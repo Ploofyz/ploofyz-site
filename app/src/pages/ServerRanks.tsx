@@ -329,9 +329,9 @@ export default function ServerRanks() {
                         {/* <td>
                           <span className="rank-price">{rank.price}</span>
                         </td> */}
-                        <td>
+                        {/* <td>
                           <button className="rank-buy-btn">Buy</button>
-                        </td>
+                        </td> */}
                       </motion.tr>
                     ))}
                   </tbody>
@@ -372,9 +372,9 @@ export default function ServerRanks() {
                         </span>
                       ))}
                     </div>
-                    <button className="rank-buy-btn" style={{ width: '100%' }}>
+                    {/* <button className="rank-buy-btn" style={{ width: '100%' }}>
                       Buy Now
-                    </button>
+                    </button> */}
                   </motion.div>
                 ))}
               </div>
