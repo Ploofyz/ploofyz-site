@@ -1,151 +1,59 @@
-# Ploofyz Website Improvements
+# Ploofyz Website
 
-This folder contains all the improved files for your Ploofyz website. Here's a summary of the changes made:
+Source code and delivery automation for [ploofyz.com](https://ploofyz.com), a React 19, TypeScript, and Vite website.
 
-## Changes Made
+## Source of truth
 
-### 1. Team Carousel Improvements
+- `main` contains the production source.
+- `app/` is the authoritative website application.
+- `.github/workflows/ci.yml` validates pull requests and `main`.
+- `.github/workflows/deploy-pages.yml` builds and deploys Pages artifacts from `main`.
+- Generated directories such as `app/node_modules/` and `app/dist/` are not source and must not be edited manually.
 
-**Files Modified:**
-- `app/src/components/TeamCarousel/TeamCarousel.tsx`
-- `app/src/components/TeamCarousel/NavigationArrow.tsx`
-- `app/src/components/TeamCarousel/NavigationArrow.css`
-- `app/src/components/TeamCarousel/ThumbnailIndicator.css`
-- `app/src/components/TeamCarousel/TeamCarousel.css`
+## Local development
 
-**Improvements:**
-- **Avatar Bounce Animation**: When you click the arrow, the avatar now bounces up slightly before changing the slide (like in your reference image)
-- **Bigger Icons**: Navigation arrows are now larger (36px-40px depending on screen size)
-- **Fixed Overlapping Avatars**: Thumbnails now scroll horizontally on small screens instead of overlapping
-- **Responsive Design**: Better handling of different screen sizes
+Prerequisites: a current Node.js LTS release and npm.
 
-### 2. Navigation Changes (About → Vote)
-
-**Files Modified:**
-- `app/src/components/Navigation.tsx`
-- `app/src/App.tsx`
-
-**Changes:**
-- Changed "About" to "Vote" in the navigation menu
-- Updated the Page type to include 'vote' instead of 'about'
-- Updated search content for the Vote page
-
-### 3. New Vote Page
-
-**New Files:**
-- `app/src/pages/Vote.tsx`
-- `app/src/pages/Vote.css`
-
-**Features:**
-- Centered Ploofyz logo at the top
-- 6 Apple-style vote buttons with gradient backgrounds
-- Each button opens in a new tab when clicked
-- Smooth hover animations and shine effects
-- Voting rewards section
-- Fully responsive design
-
-**To customize the vote links:**
-Edit the `voteLinks` array in `app/src/pages/Vote.tsx`:
-```typescript
-const voteLinks = [
-  { 
-    id: 1, 
-    label: 'Vote #1', 
-    url: 'https://your-vote-link-1.com',
-    icon: <Star size={24} />,
-    color: 'from-violet-500 to-purple-600'
-  },
-  // ... add your other vote links
-];
+```powershell
+cd app
+npm ci
+npm run dev
 ```
 
-### 4. Centered Logo on All Pages
+The application tolerates missing Supabase variables for public pages. Copy `app/.env.example` to an ignored local environment file only when Supabase-backed features need testing.
 
-**Files Modified:**
-- `app/src/pages/Home.tsx`
-- `app/src/pages/Store.tsx`
-- `app/src/pages/Join.tsx`
-- `app/src/pages/ServerRanks.tsx`
+## Verification
 
-**Changes:**
-- Added centered Ploofyz logo at the top of each page's hero section
-- Logo has smooth fade-in animation
-- Responsive sizing for different screen sizes
+Run from `app/`:
 
-## How to Apply These Changes
+```powershell
+npm run lint
+npm run test -- --run
+npm run build
+npm run preview
+```
 
-### Option 1: Copy Files to Your Repository
+Known lint and test failures are currently reported by the non-blocking `quality-baseline` CI job. The production build is the initial required gate; the quality baseline must be repaired and promoted to a required gate without allowing new regressions.
 
-1. Copy all files from `app/src/components/TeamCarousel/` to your repository
-2. Copy `app/src/components/Navigation.tsx` to your repository
-3. Copy `app/src/App.tsx` to your repository
-4. Copy `app/src/pages/Vote.tsx` and `app/src/pages/Vote.css` to your repository
-5. Copy `app/src/pages/Home.tsx`, `Store.tsx`, `Join.tsx`, `ServerRanks.tsx` to your repository
+## Contribution workflow
 
-### Option 2: Manual Changes
+1. Create a short-lived branch from current `origin/main`.
+2. Make one coherent change and preserve unrelated work.
+3. Run proportional local checks.
+4. Open a pull request into `main` and complete the PR template.
+5. Merge only after required checks pass and review concerns are resolved.
+6. Let GitHub Actions deploy the merged commit; do not edit deployment artifacts directly.
 
-If you prefer to make changes manually, here are the key modifications:
+See [docs/MAINTENANCE.md](docs/MAINTENANCE.md) for branch conventions, verification requirements, deployment migration, rollback, dependency maintenance, repository cleanup, and the definition of done.
 
-#### TeamCarousel.tsx
-- Added `isBouncing` state to track arrow click animation
-- Added `bounceDirection` state ('prev' | 'next' | null)
-- Modified `handlePrevClick` and `handleNextClick` to trigger bounce animation before changing slide
-- Wrapped slides in `AnimatePresence` for smoother transitions
+## Project map
 
-#### NavigationArrow.tsx
-- Added `isBouncing` prop
-- Added Framer Motion animations for bounce effect
-- Arrow icon now bounces up when clicked
+- Application shell and routes: `app/src/App.tsx`
+- Pages: `app/src/pages/`
+- Shared components: `app/src/components/`
+- Pavilion event records: `app/src/data/pavillion/events/`
+- Public assets: `app/public/`
+- GitHub automation: `.github/workflows/`
+- Operations runbook: `docs/MAINTENANCE.md`
 
-#### NavigationArrow.css
-- Increased icon sizes (36px mobile, 40px desktop)
-- Added circular background with blur effect
-- Better hover states
-
-#### ThumbnailIndicator.css
-- Increased thumbnail sizes (52px-64px)
-- Better active state with glow effect
-- Added CSS variables for responsive sizing
-
-#### TeamCarousel.css
-- Fixed thumbnail container to scroll horizontally on small screens
-- Added `overflow-x: auto` and hid scrollbar
-- Better responsive breakpoints
-
-#### Navigation.tsx
-- Changed navItems array: `{ label: 'Vote', page: 'vote' }`
-- Added searchable content for vote page
-
-#### App.tsx
-- Changed Page type: `export type Page = 'home' | 'vote' | 'store' | 'join' | 'ranks';`
-- Updated page rendering to use Vote component
-
-## Testing
-
-After applying the changes:
-
-1. Run `npm install` to ensure all dependencies are installed
-2. Run `npm run dev` to start the development server
-3. Test the Team Carousel:
-   - Click arrows to see avatar bounce animation
-   - Resize browser to test responsive thumbnails
-   - Check that thumbnails don't overlap on small screens
-4. Test the Vote page:
-   - Navigate to Vote from the menu
-   - Click vote buttons to ensure they open in new tabs
-   - Check responsive design on mobile
-5. Test other pages to ensure logos are centered
-
-## Browser Compatibility
-
-These changes are compatible with:
-- Chrome/Edge (latest)
-- Firefox (latest)
-- Safari (latest)
-- Mobile browsers (iOS Safari, Chrome Mobile)
-
-## Notes
-
-- The Vote page buttons currently have placeholder URLs. Update them with your actual vote links.
-- The Team Carousel maintains all existing accessibility features.
-- All animations use hardware acceleration for smooth performance.
+The project intentionally spells the feature **Pavillion** in code and visible copy. Preserve that spelling unless a coordinated rename is approved.
