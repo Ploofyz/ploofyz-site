@@ -8,12 +8,50 @@ updates:
       day: monday
       time: "09:00"
       timezone: Asia/Singapore
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 8
+    allow:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-minor
+          - version-update:semver-patch
     groups:
-      production-minor-and-patch:
+      radix-ui:
+        patterns: ["@radix-ui/*"]
         dependency-type: production
         update-types: [minor, patch]
-      development-minor-and-patch:
+      react-ecosystem:
+        patterns:
+          - react
+          - react-dom
+          - react-hook-form
+          - "@hookform/resolvers"
+          - react-resizable-panels
+        dependency-type: production
+        update-types: [minor, patch]
+      animation-and-ui-utilities:
+        patterns:
+          - framer-motion
+          - gsap
+          - tailwind-merge
+        dependency-type: production
+        update-types: [minor, patch]
+      data-and-validation:
+        patterns:
+          - "@supabase/supabase-js"
+          - date-fns
+          - zod
+        dependency-type: production
+        update-types: [minor, patch]
+      css-tooling:
+        patterns:
+          - autoprefixer
+          - postcss
+        dependency-type: development
+        update-types: [minor, patch]
+      lint-tooling:
+        patterns:
+          - "eslint-plugin-*"
+          - typescript-eslint
         dependency-type: development
         update-types: [minor, patch]
     commit-message:
@@ -26,8 +64,14 @@ updates:
       day: monday
       time: "09:30"
       timezone: Asia/Singapore
+    allow:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-minor
+          - version-update:semver-patch
     groups:
       github-actions:
         patterns: ["*"]
+        update-types: [minor, patch]
     commit-message:
       prefix: "chore(actions)"
