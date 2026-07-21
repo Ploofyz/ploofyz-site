@@ -9,6 +9,7 @@ import Store from './pages/Store';
 import Join from './pages/Join';
 import ServerRanks from './pages/ServerRanks';
 import Vote from './pages/Vote';
+import Rules from './pages/Rules';
 import SkullRace from './pages/SkullRace';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -16,7 +17,7 @@ import './App.css';
 import Pavillion from './pages/Pavillion';
 import PavillionDetail from './pages/PavillionDetail';
 
-export type Page = 'home' | 'about' | 'store' | 'join' | 'ranks' | 'vote' | 'pavillion' | 'skull-race' | 'admin';
+export type Page = 'home' | 'about' | 'store' | 'join' | 'ranks' | 'rules' | 'vote' | 'pavillion' | 'skull-race' | 'admin';
 
 function App() {
   const location = useLocation();
@@ -147,6 +148,7 @@ function App() {
               {/*currentPage === 'about' && <About />} */}
               <Route path="/join" element={<Join />} />
               <Route path="/ranks" element={<ServerRanks />} />
+              <Route path="/rules" element={<Rules />} />
               <Route path="/vote" element={<Vote />} />
               <Route path="/pavillion" element={<Pavillion />} />
               <Route path="/pavillion/:slug" element={<PavillionDetail />} />

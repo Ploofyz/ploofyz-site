@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X } from 'lucide-react';
 import type { Page } from '../App';
@@ -16,6 +16,7 @@ const navItems: { label: string; page: Page }[] = [
   { label: 'Store', page: 'store' },
   { label: 'Join', page: 'join' },
   { label: 'Ranks', page: 'ranks' },
+  { label: 'Rules', page: 'rules' },
   { label: 'Vote', page: 'vote' },
   { label: 'Pavillion', page: 'pavillion' },
   { label: 'Skull Race', page: 'skull-race' },
@@ -67,6 +68,12 @@ const searchableContent: Record<Page, { title: string; content: string; section:
     { title: 'Nexus Rank', content: 'Permanent rank with powerful utilities', section: 'Ranks' },
     { title: 'Phantom Rank', content: 'Top-tier rank with maximum perks', section: 'Ranks' },
   ],
+  rules: [
+    { title: 'Ploofyz Rules', content: 'Community guidelines for Minecraft and Discord', section: 'Hero' },
+    { title: 'Minecraft Server Rules', content: 'Fair gameplay, no cheating, no griefing, and safe community standards', section: 'Minecraft' },
+    { title: 'Discord Server Rules', content: 'Respectful chat, support channels, no spam, and safe links only', section: 'Discord' },
+    { title: 'Report Problems', content: 'Open Discord support with evidence, timestamps, screenshots, or coordinates', section: 'Support' },
+  ],
   pavillion: [
     { title: 'Ploofyz Pavillion', content: 'Archive of Ploofyz events, appreciation posts, winners, and special occasions', section: 'Archive'},
   ],
@@ -84,7 +91,6 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<{ page: Page; item: typeof searchableContent[Page][0] }[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -133,12 +139,10 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Search functionality
-  useEffect(() => {
+  const searchResults = useMemo(() => {
     const query = searchQuery.toLowerCase().trim();
     if (!query) {
-      setSearchResults([]);
-      return;
+      return [];
     }
 
     const results: { page: Page; item: typeof searchableContent[Page][0] }[] = [];
@@ -155,7 +159,7 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
       });
     });
 
-    setSearchResults(results.slice(0, 8));
+    return results.slice(0, 8);
   }, [searchQuery]);
 
   const handleSearchResultClick = (page: Page) => {
